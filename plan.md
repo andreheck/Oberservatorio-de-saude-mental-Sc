@@ -1,0 +1,27 @@
+# Plano de implementação — Observatório da Saúde Mental de Itajaí
+
+## Abordagem e infraestrutura confirmada
+
+A aplicação utiliza o starter gerido React 19/TypeScript, Vite, Express, tRPC e Drizzle, com servidor e base de dados relacional MySQL do Manus já selecionados. Essa escolha aproveita autenticação OAuth Manus, migrações e publicação em container, evitando introduzir um serviço externo desnecessário. PostgreSQL/Next.js eram sugestões, não requisitos. Não há dados oficiais atuais validados para unidades, membros, inspeções, protocolos, orçamento ou capacidade local: a aplicação começa sem registros municipais e os indicadores mostram “Dados em levantamento”, sem gráficos ou números fictícios.
+
+Construir navegação pública com os 14 módulos requeridos e Guia CAPS, visualizações vazias honestas, filtros e biblioteca. O guia diferencia orientação geral oficial nacional e oferta local pendente de verificação. O mapa territorial permite navegação e deve adicionar marcadores somente de registros publicados, verificados e georreferenciados. O painel autenticado utiliza registros persistentes, revisão antes de publicação, fontes, histórico e restrição por papel. Priorizar cadastros funcionais de registros, solicitações, inspeções, fontes, documentos e identidade; expandir formulário especializado conforme os requisitos integrais anexados. Fluxos realmente incompletos permanecem em backlog e na documentação, sem aparentar estar operacionais.
+
+O modelo relacional inicial separa usuários, configurações, registros de monitoramento, fontes, eventos e auditoria; registros têm categoria/módulo, estado editorial, origem, datas e dados estruturados, e eventos/auditoria preservam alterações e cronologia. Os módulos especializados completos e relações normalizadas extensivas constituem evolução documentada, não promessa de conclusão. Uploads internos não podem usar caminhos de objetos públicos: se a garantia de privacidade do serviço não for suficiente, guardar pequenos documentos privados na base de dados com download autenticado em vez de publicar URL. Importação CSV produz rascunhos e exige revisão; integrações automáticas externas não serão inventadas.
+
+## Estrutura do projeto
+
+`client/src/components/portal` reúne identidade, navegação, avisos, filtros e estados vazios. `client/src/pages` contém panorama, orçamento, mapa, guia CAPS, biblioteca, módulos de monitoramento e painel. `shared/portal.ts` reúne definições de módulo e os contratos compartilhados. `server/portal.ts` fornece procedimentos públicos e protegidos; `server/db.ts` preserva os helpers de autenticação; `drizzle/schema.ts` e migrações mantêm esquema persistente. `docs/` armazena guia administrativo, dicionário, metodologia, escopo efetivo, pendências e requisitos originais.
+
+Frontend e APIs são servidos pela mesma aplicação Express na porta configurada 3000; o Dockerfile do starter compila frontend/backend e usa `/api/health`. URLs de APIs e ativos são relativas para compatibilidade com Preview. Login é real, com cookie `webdev_app_session`, `SameSite=None; Secure`; nunca conceder administração ao primeiro visitante. Apenas a identidade do proprietário definida pela plataforma recebe administração. Permissões adicionais são atribuição explícita.
+
+## Design: editorial contemporâneo cívico
+
+A direção solicitada será aplicada como editorial institucional contemporâneo, sem estética hospitalar. Hierarquia nítida, superfícies claras, títulos de destaque, densidade controlada e informação verificável são os princípios centrais. O azul petróleo escuro oferece confiança; o verde-azulado sinaliza cuidado; âmbar destaca lacunas de informação sem acusação. Layout assimétrico com navegação lateral, faixas editoriais horizontais e panorama organizado em módulos, não landing page promocional.
+
+Elementos assinatura: marca circular com anéis abertos (observação e rede), etiquetas discretas de estado documental e filetes editoriais numerados. Fonte Manrope para navegação/corpo e títulos fortes; hierarquia fluida, números tabulares e no mínimo 14px para metadados. Tom cidadão preciso: “Informação pública. Cuidado coletivo.” e “Conheça os dados. Acompanhe as evidências.” A essência é um observatório independente para cidadãos acompanharem evidências de saúde mental: confiável, acolhedor, transparente. Cor assinatura: verde-petróleo #177E76.
+
+Interações diretas e reversíveis: filtros explicitamente rotulados, estados vazios que explicam o que falta, atalhos para metodologia e fontes, busca global de módulos e registros. Transições suaves de 150–200ms, sem efeitos parallax, animação decorativa ou carregamento infinito; respeitar redução de movimento. Mobile com menu acessível, conteúdo em coluna, controles de pelo menos 44px e navegação por teclado. Ícones vetoriais são informativos; nenhum retrato ou imagem local será inventado.
+
+## Entrega incremental e limites
+
+Entregar o máximo funcional dentro do ambiente com versão salva, documentação e publicação se disponível. Dados atuais, cadastro institucional autorizado, validação da composição CISM, limites oficiais de bairros e APIs financeiras dependem de fontes e revisão. Não confundir estrutura de dashboard com dados importados, nem formulários genéricos com implementação integral de todos os campos avançados. Documentar exatamente o que existe e o que falta. Uma avaliação final somente leitura confere as conexões e aponta falhas concretas para correção.

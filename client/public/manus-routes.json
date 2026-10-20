@@ -1,0 +1,26 @@
+{
+  "routes": [
+    { "path": "/", "title": "Panorama da saúde mental" },
+    { "path": "/dados-orcamento", "title": "Dados e orçamento" },
+    { "path": "/mapa-raps", "title": "Mapa da RAPS" },
+    { "path": "/profissionais", "title": "Profissionais" },
+    { "path": "/fiscalizacoes", "title": "Fiscalizações" },
+    { "path": "/solicitacoes", "title": "Solicitações e prazos" },
+    { "path": "/acoes-executivo", "title": "Ações do Executivo" },
+    {
+      "path": "/comunidades-terapeuticas",
+      "title": "Comunidades terapêuticas"
+    },
+    { "path": "/timeline", "title": "Linha do tempo" },
+    { "path": "/bairros", "title": "Ações por bairro" },
+    { "path": "/comissao", "title": "Comissão" },
+    { "path": "/documentos", "title": "Biblioteca pública" },
+    { "path": "/publicacoes", "title": "Publicações" },
+    { "path": "/guia-caps", "title": "Guia de acesso aos CAPS" },
+    { "path": "/guia-caps/:slug", "title": "Modalidades de CAPS" },
+    { "path": "/metodologia", "title": "Metodologia e contato" },
+    { "path": "/admin", "title": "Área de gestão" },
+    { "path": "/registro/:id", "title": "Registro público" },
+    { "path": "/busca", "title": "Busca global" }
+  ]
+}
