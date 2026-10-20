@@ -72,8 +72,8 @@ export default function Home() {
               "Transparência, participação social e monitoramento das políticas públicas de saúde mental em Itajaí."}
           </p>
           <div className="hero-buttons">
-            <Link href="/dados-orcamento" className="button button-primary">
-              Explorar os dados <ArrowRight size={17} />
+            <Link href="/dados-da-cidade" className="button button-primary">
+              Conhecer a cidade em dados <ArrowRight size={17} />
             </Link>
             <Link href="/comissao" className="button button-text">
               Conheça a iniciativa <ArrowUpRight size={16} />
@@ -115,8 +115,9 @@ export default function Home() {
           <strong>Um observatório construído com evidências.</strong>
           <span>
             {" "}
-            Os dados municipais estão em levantamento e validação. Nenhum valor
-            é estimado para preencher este portal.
+            O perfil IBGE e algumas referências da transparência já estão
+            publicados; dados operacionais locais da saúde mental continuam em
+            levantamento. Nenhum valor é estimado para preencher este portal.
           </span>
         </div>
         <Link href="/metodologia">

@@ -23,12 +23,14 @@ export async function decoratePublicHtml(template: string, url: string) {
   let content = "";
   let status = 200;
   let noindex = false;
-  const links = modules
-    .map(
-      m =>
-        `<li><a href="${m.path}">${escape(m.title)}</a> — ${escape(m.description)}</li>`
-    )
-    .join("");
+  const links =
+    modules
+      .map(
+        m =>
+          `<li><a href="${m.path}">${escape(m.title)}</a> — ${escape(m.description)}</li>`
+      )
+      .join("") +
+    '<li><a href="/dados-da-cidade">Dados da cidade</a> — Perfil municipal e indicadores oficiais do IBGE e da transparência.</li>';
   if (path === "/") {
     content =
       "<h2>Informação pública. Cuidado coletivo.</h2><p>Os dados municipais estão em levantamento e validação. Não apresentamos números inventados. Acompanhe os registros, as fontes e as evidências.</p>";
@@ -44,6 +46,12 @@ export async function decoratePublicHtml(template: string, url: string) {
       "Fontes, critérios, limites dos dados e procedimentos de revisão e correção.";
     content =
       "<h2>Fontes verificáveis e revisão</h2><p>Ausência de dado não é zero. Atendimentos não equivalem a pessoas únicas. Anúncio, orçamento, transferência, empenho, liquidação e pagamento são etapas distintas, não despesas independentes.</p><p>Sem prazo aplicável, termo inicial e situação de resposta verificados, o portal não afirma atraso legal. Ausência de marcador no mapa não prova ausência de atendimento.</p>";
+  } else if (path === "/dados-da-cidade") {
+    title = "Itajaí em dados — saúde e cidade";
+    description =
+      "Perfil municipal com dados do IBGE e da transparência de Itajaí, períodos, fontes, metodologia e estado de validação das metas anuais de saúde.";
+    content =
+      '<h2>Perfil municipal e fontes oficiais</h2><p>O Censo Demográfico 2022 registrou 264.054 residentes em Itajaí (código IBGE 4208203); a estimativa IBGE 2026, referência 01/07/2026, é 302.247. São medidas diferentes: a estimativa não substitui o Censo nem a distribuição etária 2022. Indicadores de saúde geral não medem, por si só, saúde mental nem cobertura da Rede de Atenção Psicossocial.</p><p>O Portal da Transparência exibe no cartão “Despesas com Saúde” R$ 373,6 milhões e 21,26%; fórmula, denominador, composição e etapa não foram confirmados. Não interpretar esse percentual como proporção das despesas liquidadas apresentadas separadamente. Despesas gerais da saúde ou do FMS não são automaticamente gastos de saúde mental. As metas da Programação Anual de Saúde 2026 aguardam validação documental; não há metas estimadas ou publicadas.</p><a href="https://www.ibge.gov.br/cidades-e-estados/sc/itajai.html">Fonte: IBGE Cidades e Estados</a> · <a href="https://portaltransparencia.itajai.sc.gov.br/">Portal da Transparência de Itajaí</a>';
   } else if (path === "/admin") {
     title = "Área de gestão";
     description =

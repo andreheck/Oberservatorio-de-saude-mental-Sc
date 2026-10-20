@@ -1304,3 +1304,14 @@ O módulo deve ser integrado ao mapa da RAPS, à timeline institucional, ao sist
 
 - [x] Avaliação somente leitura das conexões interface/API, permissões e persistência; falhas concretas corrigidas e verificadas nos caminhos afetados.
 - [ ] Publicação permanente confirmada.
+
+
+## Aditivo de requisitos solicitado em 19/10/2026 — Centro de dados municipais
+
+### [x] 1. Centro de dados sobre a cidade, saúde e saúde mental
+
+“Busque dados no portal da transparência do município de Itajaí, dados do IBGE sobre o município; vamos tornar esse portal um centro de dados sobre a saúde mental e saúde da cidade.” Incluir uma página pública que reúna fontes municipais e do IBGE, com o indicador, conceito, unidade, período/ano, data de consulta/atualização, instituição, URL da fonte, método de leitura/cálculo e limitações. Diferenciar contexto demográfico/territorial, indicadores gerais de saúde, saúde mental, plano/meta, previsão e execução. Dados gerais da saúde ou do Fundo Municipal de Saúde não devem ser classificados como gastos de saúde mental sem classificação documental explícita. Não inferir atendimento local a partir de dados gerais do IBGE nem tratar falta de publicação como valor zero. Dados atualizados manualmente devem indicar a data da extração; não alegar atualização automática sem integração verificada. Não publicar identificadores pessoais que possam surgir em exportações da API municipal.
+
+### [ ] 2. Metas e previsões da Programação Anual de Saúde 2026
+
+“inclua esses dados no site de alguma forma: as metas e previsão”. Incorporar objetivos, metas, indicadores e previsões da PAS 2026 a partir de documento oficial íntegro, com página/trecho, unidade, meta/plano anual, período e órgão responsável. Separar valor/resultado previsto do realizado e exibir fonte, atualização e evidências. Não inventar nem inferir números. O anexo `ProgramaçãoAnualdeSaúde-2026-FINAL.pdf` recebido na sessão tinha 0 bytes e não pôde ser lido; localizar cópia oficial válida ou solicitar reenvio antes de publicar as metas.

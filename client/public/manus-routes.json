@@ -2,6 +2,7 @@
   "routes": [
     { "path": "/", "title": "Panorama da saúde mental" },
     { "path": "/dados-orcamento", "title": "Dados e orçamento" },
+    { "path": "/dados-da-cidade", "title": "Dados oficiais da cidade" },
     { "path": "/mapa-raps", "title": "Mapa da RAPS" },
     { "path": "/profissionais", "title": "Profissionais" },
     { "path": "/fiscalizacoes", "title": "Fiscalizações" },

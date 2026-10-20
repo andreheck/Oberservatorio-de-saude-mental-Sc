@@ -19,7 +19,17 @@ export default function Search() {
       .normalize("NFD")
       .replace(/[\u0300-\u036f]/g, "")
       .toLowerCase();
-  const matching = modules.filter(m =>
+  const searchableModules = [
+    ...modules,
+    {
+      key: "city-data",
+      path: "/dados-da-cidade",
+      title: "Dados da cidade",
+      description:
+        "Perfil municipal com fontes oficiais do IBGE e da transparência de Itajaí.",
+    },
+  ];
+  const matching = searchableModules.filter(m =>
     norm(m.title + " " + m.description).includes(norm(query))
   );
   const records = (q.data || []) as PortalRecord[];

@@ -5,6 +5,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import Layout from "@/components/portal/Layout";
 import Home from "@/pages/portal/Home";
 import Budget from "@/pages/portal/Budget";
+import CityData from "@/pages/portal/CityData";
 import CapsGuide from "@/pages/portal/CapsGuide";
 import ModulePage from "@/pages/portal/ModulePage";
 import Methodology from "@/pages/portal/Methodology";
@@ -25,6 +26,7 @@ export default function App() {
           <Switch>
             <Route path="/" component={Home} />
             <Route path="/dados-orcamento" component={Budget} />
+            <Route path="/dados-da-cidade" component={CityData} />
             <Route path="/mapa-raps" component={RapsMap} />
             <Route path="/guia-caps" component={CapsGuide} />
             <Route path="/guia-caps/:slug" component={CapsGuide} />

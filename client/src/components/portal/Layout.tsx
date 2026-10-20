@@ -9,6 +9,7 @@ import {
   CalendarClock,
   ChevronRight,
   ClipboardCheck,
+  Database,
   FileText,
   Handshake,
   Home,
@@ -70,11 +71,13 @@ export default function Layout({ children }: { children: ReactNode }) {
     modules.find(m => m.path === location)?.title ??
     (location.startsWith("/guia-caps")
       ? "Guia de acesso aos CAPS"
-      : location === "/metodologia"
-        ? "Metodologia e contato"
-        : location === "/admin"
-          ? "Área de gestão"
-          : "Panorama da saúde mental");
+      : location === "/dados-da-cidade"
+        ? "Dados da cidade"
+        : location === "/metodologia"
+          ? "Metodologia e contato"
+          : location === "/admin"
+            ? "Área de gestão"
+            : "Panorama da saúde mental");
   useEffect(() => {
     document.title = `${title} | Observatório de Itajaí`;
   }, [title]);
@@ -110,6 +113,13 @@ export default function Layout({ children }: { children: ReactNode }) {
             <Home size={18} />
             <span>Início</span>
             {location === "/" && <ChevronRight size={15} />}
+          </Link>
+          <Link
+            href="/dados-da-cidade"
+            className={`nav-item ${location === "/dados-da-cidade" ? "active" : ""}`}
+          >
+            <Database size={18} />
+            <span>Dados da cidade</span>
           </Link>
           {modules.slice(0, 9).map(m => {
             const Icon = icons[m.icon];

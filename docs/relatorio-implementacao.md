@@ -29,3 +29,14 @@ Integrações automáticas com CNES, FNS, DATASUS, SIOPS, PNCP e transparências
 ## Acesso e publicação
 
 O portal pode ser utilizado no Preview do projeto. A versão salva por checkpoint e a publicação são operações distintas. O endereço permanente só deve ser informado após confirmação de publicação bem-sucedida. A área administrativa fica na rota `/admin`, com login Manus e permissão atribuída pelo proprietário; não há senha compartilhada nem credencial publicada neste relatório.
+
+
+## Aditivo — Centro de dados municipal (19/10/2026)
+
+Foi criada a rota pública `/dados-da-cidade`, ligada à navegação lateral, à busca global e ao conteúdo semântico inicial. O catálogo versionado `shared/cityData.ts` reúne indicadores do IBGE com períodos e fontes próprios, incluindo Censo 2022 (264.054 residentes), estimativa separada de 2026 (302.247; referência 01/07/2026), grupos etários do SIDRA 9514 (21 categorias, soma 264.054), exportação CSV e fotografia do painel resumido da Transparência de Itajaí (outubro de 2026). A visualização adapta-se a desktop/telemóvel e descreve indicadores por texto, unidade, período, fonte e limites.
+
+O painel municipal é publicado como leitura literal do cartão oficial, visualmente separado dos totais liquidados. A etapa, a composição e o denominador do indicador 21,26% não foram confirmados; a página declara que o percentual não deve ser interpretado como fração das despesas liquidadas nem como gasto específico de saúde mental. Não há importação automática nem escrita nova na base gerida; os dados são versionados em código e a atualização exige revalidar a fonte e atualizar a data. Os endpoints de execução bruta podem trazer dados de favorecidos e não são replicados na página.
+
+As metas e previsões da PAS 2026 continuam pendentes: o arquivo recebido tinha 0 bytes, portanto não foram inseridas metas, previsões ou realizações estimadas. A página comunica o estado “Em levantamento documental”.
+
+Verificações deste aditivo: `pnpm check` passou; `pnpm test` passou (22 testes em cinco ficheiros); `pnpm build` passou; `/api/health` respondeu `{"status":"ok"}`; o manifesto contém 20 rotas incluindo `/dados-da-cidade`; a rota respondeu HTTP 200 com conteúdo semântico de IBGE. A consulta direta SIDRA das 21 faixas etárias coincidiu com os 21 valores locais e somou 264.054; a tabela SIDRA 6579 devolveu 302.247 para a estimativa 2026. Foram observadas capturas desktop e móvel do gráfico e cartões; nenhum cadastro foi criado na base partilhada.

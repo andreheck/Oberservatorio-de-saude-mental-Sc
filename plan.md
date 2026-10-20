@@ -25,3 +25,12 @@ Interações diretas e reversíveis: filtros explicitamente rotulados, estados v
 ## Entrega incremental e limites
 
 Entregar o máximo funcional dentro do ambiente com versão salva, documentação e publicação se disponível. Dados atuais, cadastro institucional autorizado, validação da composição CISM, limites oficiais de bairros e APIs financeiras dependem de fontes e revisão. Não confundir estrutura de dashboard com dados importados, nem formulários genéricos com implementação integral de todos os campos avançados. Documentar exatamente o que existe e o que falta. Uma avaliação final somente leitura confere as conexões e aponta falhas concretas para correção.
+
+
+## Aditivo de escopo — Centro de dados da cidade e plano anual
+
+A nova secção pública `/dados-da-cidade` reunirá indicadores municipais contextuais e de saúde extraídos de páginas e APIs oficiais do IBGE, com prioridade para Censo/SIDRA, e ligações rastreáveis às consultas do Portal da Transparência de Itajaí. Cada observação conservará o conceito, unidade, exercício/período, data de consulta/atualização, URL e limites de interpretação; as visualizações indicarão quando um dado descreve a cidade, a saúde geral ou especificamente saúde mental. A página não reproduzirá nomes/identificadores pessoais de fornecedores a partir da API bruta nem converterá despesas do FMS ou da saúde em saúde mental sem classificação documental explícita. A expansão inicial será um catálogo de dados versionado no código, acompanhado de metodologia, não uma alegação de integração/atualização automática.
+
+A estimativa de população IBGE 2026 (referência de 01/07/2026) deverá aparecer como estimativa anual independente da contagem e da distribuição etária do Censo 2022, com confirmação na SIDRA 6579/DOU. Valores do cartão municipal “Despesas com Saúde” ficam visualmente separados da execução liquidada; se denominador, composição e etapa não forem conhecidos, declarar explicitamente essa limitação e não calcular percentagens ou inferir gasto de saúde mental.
+
+A Programação Anual de Saúde de 2026 deverá ser transcrita apenas a partir de cópia oficial legível e publicada como planejamento: meta prevista, indicador, unidade, ano, fonte/página, previsão/valor planejado, atualização e evidências de execução em campos separados. O arquivo anexado nesta sessão foi recebido com zero bytes; por isso, a PAS e suas metas ficam como dependência aberta até obter cópia íntegra oficial ou novo envio. Nenhuma previsão ou meta será inferida a partir do nome do arquivo.
