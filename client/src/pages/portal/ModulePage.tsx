@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { ArrowUpRight, FileText, Info, Users } from "lucide-react";
+import {
+  Accessibility,
+  ArrowUpRight,
+  FileText,
+  Info,
+  Users,
+} from "lucide-react";
 import { trpc } from "@/lib/trpc";
 import DocumentsManager from "@/components/portal/DocumentsManager";
 import { modules, PortalRecord } from "@shared/portal";
@@ -90,6 +96,23 @@ export default function ModulePage({ module }: { module: string }) {
             perfis podem ser preparados na área de gestão, com biografias
             factuais e fotografias autorizadas.
           </Notice>
+          <figure className="commission-visual">
+            <div className="commission-art" aria-hidden="true">
+              <span className="commission-paper commission-paper-coral" />
+              <span className="commission-paper commission-paper-yellow" />
+              <span className="commission-paper commission-paper-teal" />
+              <span className="commission-art-icon">
+                <Users size={43} />
+              </span>
+              <span className="commission-art-icon commission-access-icon">
+                <Accessibility size={35} />
+              </span>
+            </div>
+            <figcaption>
+              Composição abstrata sobre participação e acessibilidade; não
+              retrata membros reais da comissão.
+            </figcaption>
+          </figure>
         </>
       )}
       {module === "requests" && (

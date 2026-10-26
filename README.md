@@ -1,14 +1,22 @@
-# Observatório da Saúde Mental de Itajaí
+# Observatório de Saúde Mental (Sul do Brasil)
 
-React / Express / tRPC / Drizzle starter, adapted from the Sandbox web-db-user template.
+> A marca tem identidade regional; o recorte de dados implementado nesta versão é municipal, de Itajaí/SC.
 
-- `pnpm dev`: development server; honors `PORT` (default 3000).
-- `pnpm build` / `pnpm start`: build and serve `dist/index.js` and `dist/public/`.
-- `pnpm db:migrate`: apply checked-in migrations. `pnpm db:push`: generate and apply new schema changes.
-- `pnpm check` / `pnpm test`: types and application tests.
+Para retomar o desenvolvimento em outra IA, comece por [`docs/CONTINUIDADE_PARA_IA.md`](docs/CONTINUIDADE_PARA_IA.md). Em seguida, consulte `plan.md`, `TODO.md`, [`docs/guia-portal.md`](docs/guia-portal.md), o relatório de implementação e os documentos de fontes indicados no guia. Preserve os requisitos integrais do `TODO.md` e as limitações de procedência dos dados.
 
-Start with the Webdev skill's default-template guide. Platform login, storage, payments and service contracts live in its shared references; read the relevant capability before extending its helper.
+## Stack
 
-`server/_core/publicConfig.ts` exposes only named public runtime values. Private keys stay server-side. The platform serves managed `/manus-storage/` assets; the application does not register a second proxy.
+Aplicação React 19, TypeScript, Vite, Tailwind, Express, tRPC e Drizzle ORM sobre MySQL gerido pelo Manus.
 
-Platform configuration is readable and editable through `webdev.config`. Default settings are initial values, not enforced constraints. The agent may modify the files, commands and configuration or follow the flexible guide for another stack.
+## Comandos
+
+- `pnpm dev`: inicia o servidor de desenvolvimento; respeita `PORT` (padrão 3000).
+- `pnpm build` / `pnpm start`: compila e inicia `dist/index.js` e `dist/public/`.
+- `pnpm db:migrate`: aplica as migrações registradas no repositório.
+- `pnpm check` / `pnpm test`: executam a checagem TypeScript e os testes da aplicação.
+
+A base de desenvolvimento e produção é compartilhada. Não faça testes destrutivos ou cadastros fictícios nela. Alterações de schema devem ter migração revisada e aditiva. Leia a skill Webdev do Manus e os guias específicos de autenticação, banco, mapas, publicação e Git antes de alterar essas áreas.
+
+## Segurança e configuração
+
+A configuração da plataforma é gerida por `webdev.config`. `server/_core/publicConfig.ts` expõe apenas valores públicos nomeados; credenciais privadas devem permanecer no servidor e no mecanismo de configuração protegido. `/manus-storage/` é servido pela plataforma, sem criar um segundo proxy no aplicativo.

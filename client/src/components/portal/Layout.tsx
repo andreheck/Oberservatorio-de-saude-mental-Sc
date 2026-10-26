@@ -42,18 +42,18 @@ export const icons: Record<string, any> = {
 export function Brand({ compact = false }: { compact?: boolean }) {
   return (
     <Link
-      href="/"
+      href="/inicio"
       className="brand"
-      aria-label="Observatório da Saúde Mental de Itajaí, início"
+      aria-label="Observatório de Saúde Mental (Sul do Brasil), início"
     >
       <span className="brand-mark">
-        <Activity size={22} />
+          <img src="/images/logo-observatorio-sul.png" alt="" />
       </span>
       <span>
         <b>
           observatório<span className="brand-dot">.</span>
         </b>
-        {!compact && <small>SAÚDE MENTAL · ITAJAÍ</small>}
+        {!compact && <small>SAÚDE MENTAL · SUL DO BRASIL</small>}
       </span>
     </Link>
   );
@@ -73,13 +73,19 @@ export default function Layout({ children }: { children: ReactNode }) {
       ? "Guia de acesso aos CAPS"
       : location === "/dados-da-cidade"
         ? "Dados da cidade"
-        : location === "/metodologia"
-          ? "Metodologia e contato"
-          : location === "/admin"
-            ? "Área de gestão"
-            : "Panorama da saúde mental");
+        : location === "/metas-saude"
+          ? "Metas da saúde mental"
+          : location === "/atualizacoes-normativas"
+            ? "Atualizações normativas"
+          : location === "/cism"
+            ? "Área dos membros CISM"
+            : location === "/metodologia"
+              ? "Metodologia e contato"
+              : location === "/admin"
+                ? "Área de gestão"
+                : "Panorama da saúde mental");
   useEffect(() => {
-    document.title = `${title} | Observatório de Itajaí`;
+    document.title = `${title} | Observatório de Saúde Mental (Sul do Brasil)`;
   }, [title]);
   return (
     <div className="app-shell">
@@ -107,12 +113,12 @@ export default function Layout({ children }: { children: ReactNode }) {
         <div className="side-label">ACOMPANHE O OBSERVATÓRIO</div>
         <nav aria-label="Navegação principal">
           <Link
-            href="/"
-            className={`nav-item ${location === "/" ? "active" : ""}`}
+            href="/inicio"
+            className={`nav-item ${location === "/inicio" ? "active" : ""}`}
           >
             <Home size={18} />
             <span>Início</span>
-            {location === "/" && <ChevronRight size={15} />}
+            {location === "/inicio" && <ChevronRight size={15} />}
           </Link>
           <Link
             href="/dados-da-cidade"
@@ -120,6 +126,13 @@ export default function Layout({ children }: { children: ReactNode }) {
           >
             <Database size={18} />
             <span>Dados da cidade</span>
+          </Link>
+          <Link
+            href="/metas-saude"
+            className={`nav-item ${location === "/metas-saude" ? "active" : ""}`}
+          >
+            <BarChart3 size={18} />
+            <span>Metas de saúde 2026–2029</span>
           </Link>
           {modules.slice(0, 9).map(m => {
             const Icon = icons[m.icon];
@@ -148,6 +161,20 @@ export default function Layout({ children }: { children: ReactNode }) {
               </Link>
             );
           })}
+          <Link
+            href="/atualizacoes-normativas"
+            className={`nav-item ${location === "/atualizacoes-normativas" ? "active" : ""}`}
+          >
+            <BookOpen size={18} />
+            <span>Atualizações normativas</span>
+          </Link>
+          <Link
+            href="/cism"
+            className={`nav-item ${location === "/cism" ? "active" : ""}`}
+          >
+            <ShieldCheck size={18} />
+            <span>Área dos membros CISM</span>
+          </Link>
           <Link
             href="/metodologia"
             className={`nav-item ${location === "/metodologia" ? "active" : ""}`}
@@ -186,7 +213,7 @@ export default function Layout({ children }: { children: ReactNode }) {
               <Menu />
             </button>
             <span className="topbar-place">
-              <MapPin size={14} /> Itajaí, Santa Catarina
+              <MapPin size={14} /> Dados: Itajaí/SC
             </span>
             <span className="topbar-separator">/</span>
             <span className="topbar-title">{title}</span>
@@ -211,7 +238,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         <footer className="footer">
           <div>
             <strong>
-              {settings.data?.name || "Observatório da Saúde Mental de Itajaí"}
+              {settings.data?.name || "Observatório de Saúde Mental (Sul do Brasil)"}
             </strong>
             <p>
               {settings.data?.signature ||

@@ -28,4 +28,18 @@ Rotas oficiais de consulta observadas: Despesa detalhada `#/itajai/portal/despes
 
 A função administrativa “Saúde” ou o Fundo Municipal de Saúde não equivale à política de saúde mental. Gastos de saúde mental devem ser identificados por ação, unidade, empenho, contrato, objeto ou classificação documental específica, e conciliados entre previsão, empenho, liquidação, pagamento, transferências e restos a pagar. Transferência não se soma novamente à despesa que ela financiou. Todo dado deve manter órgão, período, unidade, etapa, código de fonte, identificador do empenho/documento, URL de origem, data de consulta, fórmula e nota de limitações.
 
-O anexo do usuário `ProgramaçãoAnualdeSaúde-2026-FINAL.pdf` foi recebido no Sandbox como arquivo de 0 bytes (arquivo vazio; pdftotext/pdinfo não pode abrir). Não extrair nem inventar metas, previsões, indicadores ou valores a partir deste anexo. Buscar cópia oficial íntegra ou solicitar reenvio antes de publicar a PAS.
+O anexo anterior `ProgramaçãoAnualdeSaúde-2026-FINAL.pdf` chegou como arquivo de 0 bytes e permanece inutilizável. Em 21/10/2026 o usuário enviou `Itajai_PAS_2026_Dados_e_Metas_Organizados.docx`, com transcrição estruturada de 18 metas e páginas de um PDF da PAS de Itajaí no DigiSUS Gestor. O registro de fonte e os limites estão em `docs/fontes-mapa-cism-pas.md`. Na publicação, identificar os dados como transcrição organizada fornecida pelo usuário, citar a fonte primária indicada e a página do PDF; não afirmar conferência direta do PDF original, nem inferir execução, resultados ou valores anuais ausentes.
+
+
+## Saúde mental — publicação municipal de 2026
+
+A Prefeitura publicou em 17/09/2026 a notícia [“Setembro Amarelo reúne ações de saúde mental em Itajaí”](https://itajai.sc.gov.br/noticias/37613/setembro-amarelo-reune-acoes-de-saude-mental-em-itajai). Para maio–agosto de 2026, a notícia informa 27.084 registros de atendimentos/procedimentos relacionados à saúde mental e discrimina oito grupos: psiquiatria ambulatorial (564), psicologia infantil (1.968), psicologia adulto (5.707), clínicas de psicologia (3.890), CAPS II (7.127 procedimentos), CAPS AD (3.429 procedimentos), CAPSi (2.850 procedimentos) e outros serviços — Ceredi, CEPICS, CAID e UPAs — (1.549). A soma dos oito grupos confere com o total publicado. Os números são reproduzidos como informados pela Prefeitura; a notícia não fornece uma extração tabular, a definição administrativa de cada grupo, denominador territorial ou desagregação por bairro.
+
+A mesma notícia ressalta que os registros são atendimentos/procedimentos, não pessoas únicas, pois uma pessoa pode ter mais de um registro ou usar serviços diferentes. Portanto, estes totais podem ser apresentados somente como retrato agregado municipal do período, com fonte e data visíveis; não equivalem a prevalência, demanda não atendida, capacidade, cobertura por bairro ou resultados de metas da PAS, e não devem alimentar mapa de calor territorial.
+
+A notícia também reporta mudança nos diagnósticos registrados (2.636 no 3º trimestre de 2025 e 67.839 no 2º trimestre de 2026), em pessoas acompanhadas ativamente (401 e 58.063) e na cobertura de cuidado direto (15,2% e 85,6%). A Prefeitura atribui parte da mudança à capacitação das equipes e à qualificação dos registros. Sem relatório técnico, fórmula e série compatível disponíveis nesta fonte, esses valores não devem ser interpretados pelo observatório como prevalência, pessoas únicas ou comparação homogênea.
+
+
+## Nota de identidade e escopo — 24/10/2026
+
+O nome do portal passou a **Observatório de Saúde Mental (Sul do Brasil)** por solicitação do usuário. Essa marca não amplia a cobertura das fontes utilizadas: os dados municipais e a série de saúde mental documentados neste arquivo referem-se a Itajaí/SC, conforme períodos e limitações registrados acima. Não extrapolar os valores para Santa Catarina, Paraná ou Rio Grande do Sul.

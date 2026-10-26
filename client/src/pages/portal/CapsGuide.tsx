@@ -76,6 +76,24 @@ export default function CapsGuide() {
           </p>
         </div>
       </section>
+      {!type && (
+        <figure className="guide-listening-visual">
+          <img
+            src="/manus-storage/async-images/h1k4ztjz912XRa9iklgDN7/image-1.webp"
+            alt="Ilustração editorial de um homem negro idoso em conversa acolhedora com uma profissional da saúde, sentados em poltronas verdes."
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>
+            <span className="eyebrow">ESCUTA ENTRE GERAÇÕES</span>
+            <strong>O cuidado também começa quando alguém é ouvido.</strong>
+            <span>
+              Ilustração editorial; não representa uma unidade ou atendimento
+              específico de Itajaí.
+            </span>
+          </figcaption>
+        </figure>
+      )}
       <Notice title="Orientação nacional, oferta local ainda em verificação">
         Este guia explica as modalidades segundo o Ministério da Saúde. Não
         confirma a existência, endereço, horário ou funcionamento atual dessas

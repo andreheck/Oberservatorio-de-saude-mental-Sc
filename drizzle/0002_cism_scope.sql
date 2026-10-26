@@ -1,0 +1,3 @@
+ALTER TABLE `userPermissions` MODIFY COLUMN `role` enum('admin','editor','finance','inspections','documents','reviewer','reader','cism_member') NOT NULL;--> statement-breakpoint
+ALTER TABLE `portalDocuments` ADD `accessScope` enum('public','cism') DEFAULT 'public' NOT NULL;--> statement-breakpoint
+CREATE INDEX `portalDocuments_access_scope_publication_idx` ON `portalDocuments` (`accessScope`,`publication`);

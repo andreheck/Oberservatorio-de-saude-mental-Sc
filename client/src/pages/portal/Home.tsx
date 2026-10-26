@@ -11,12 +11,11 @@ import {
   FileText,
   HeartHandshake,
   Info,
-  Map,
   MapPin,
   ShieldCheck,
-  Users,
 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
+import { verifiedHealthFacilities } from "@shared/localHealthFacilities";
 import {
   Empty,
   RecordCard,
@@ -29,8 +28,8 @@ export default function Home() {
   const counts = [
     {
       icon: MapPin,
-      title: "Serviços da RAPS",
-      label: "Rede de cuidado documentada",
+      title: "Pontos com localização cruzada",
+      label: "Endereços cadastrados; funcionamento ainda não confirmado",
       href: "/mapa-raps",
     },
     {
@@ -56,7 +55,7 @@ export default function Home() {
     <div className="home-page">
       <div className="home-intro">
         <div className="eyebrow">
-          <span className="live-dot" /> OBSERVATÓRIO DA SAÚDE MENTAL DE ITAJAÍ
+          <span className="live-dot" /> OBSERVATÓRIO DE SAÚDE MENTAL (SUL DO BRASIL)
         </div>
         <span className="edition-tag">TRANSPARÊNCIA · CONTROLE SOCIAL</span>
       </div>
@@ -86,38 +85,51 @@ export default function Home() {
             </span>
           </div>
         </div>
-        <Link href="/guia-caps" className="hero-guide">
-          <div className="guide-top">
-            <span className="guide-icon">
-              <HeartHandshake size={28} />
-            </span>
-            <span className="guide-badge">GUIA DE ACESSO</span>
-          </div>
-          <h2>
-            Preciso de ajuda.
-            <br />
-            Por onde começo?
-          </h2>
-          <p>
-            Entenda os CAPS e os caminhos para buscar cuidado em saúde mental.
-          </p>
-          <div className="guide-bottom">
-            Conhecer o guia dos CAPS{" "}
-            <span>
-              <ArrowUpRight size={20} />
-            </span>
-          </div>
+        <Link href="/guia-caps" className="hero-visual">
+          <img
+            src="/images/collage-conversation-reference.png"
+            alt="Profissional negra em conversa acolhedora com um casal mais velho, diante de recortes geométricos coloridos."
+            loading="eager"
+            decoding="async"
+          />
+          <span className="hero-visual-label">Conversa e acolhimento</span>
+          <span className="hero-visual-link">
+            Conheça os caminhos de cuidado <ArrowUpRight size={16} />
+          </span>
         </Link>
       </section>
+      <Link href="/guia-caps" className="care-bridge">
+        <span className="care-bridge-art">
+          <img
+            src="/manus-storage/async-images/h1k4ztjz912XRa9iklgDN7/image-3.webp"
+            alt="Ilustração editorial de uma mulher negra em perfil diante de um caminho que segue em direção ao sol."
+            loading="lazy"
+            decoding="async"
+          />
+        </span>
+        <div>
+          <span className="eyebrow">CAMINHOS DE CUIDADO</span>
+          <h2>Preciso de ajuda. Por onde começo?</h2>
+          <p>
+            Orientação pública sobre acolhimento, CAPS e serviços de urgência,
+            sem substituir atendimento clínico.
+          </p>
+        </div>
+        <span className="care-bridge-arrow">
+          <ArrowRight size={19} />
+        </span>
+      </Link>
       <div className="data-banner">
         <span className="amber-dot" />
         <div>
           <strong>Um observatório construído com evidências.</strong>
           <span>
             {" "}
-            O perfil IBGE e algumas referências da transparência já estão
-            publicados; dados operacionais locais da saúde mental continuam em
-            levantamento. Nenhum valor é estimado para preencher este portal.
+            O perfil IBGE, referências da transparência e um retrato municipal
+            de atendimentos/procedimentos de saúde mental (maio a agosto de
+            2026) estão publicados. Metas selecionadas da PAS mostram valores
+            planejados, sem execução informada; recortes territoriais ainda
+            aguardam base validada. Nenhum valor é estimado.
           </span>
         </div>
         <Link href="/metodologia">
@@ -131,41 +143,55 @@ export default function Home() {
           subtitle="Um panorama da informação documentada, não uma estimativa da realidade municipal."
         />
         <div className="metric-grid">
-          {counts.map((c, i) => (
-            <Link href={c.href} className="metric-card" key={c.title}>
-              <div className="metric-top">
-                <c.icon size={20} />
-                <ArrowUpRight size={16} />
-              </div>
-              <div className="metric-value">
-                {(() => {
-                  const key = ["services", "requests", "inspections", "budget"][
-                    i
-                  ];
-                  const items = (records.data || []).filter(
-                    r => r.module === key
-                  );
-                  return items.length ? (
+          {counts.map((c, i) => {
+            const moduleKey =
+              ["services", "requests", "inspections", "budget"][i] ??
+              "services";
+            const items = (records.data || []).filter(
+              record => record.module === moduleKey
+            );
+            const count =
+              moduleKey === "services"
+                ? verifiedHealthFacilities.length
+                : items.length;
+            return (
+              <Link href={c.href} className="metric-card" key={c.title}>
+                <div className="metric-top">
+                  <c.icon size={20} />
+                  <ArrowUpRight size={16} />
+                </div>
+                <div className="metric-value">
+                  {count ? (
                     <>
-                      {items.length}
-                      <span>Registros públicos</span>
+                      {count}
+                      <span>
+                        {moduleKey === "services"
+                          ? "Pontos no mapa"
+                          : "Registros públicos"}
+                      </span>
                     </>
                   ) : (
                     <>
                       — <span>Em levantamento</span>
                     </>
-                  );
-                })()}
-              </div>
-              <h3>{c.title}</h3>
-              <p>{c.label}</p>
-              <div className="metric-bottom">
-                <span className="small-dot" /> Aguardando dados validados
-              </div>
-            </Link>
-          ))}
+                  )}
+                </div>
+                <h3>{c.title}</h3>
+                <p>{c.label}</p>
+                <div className="metric-bottom">
+                  <span className="small-dot" />
+                  {moduleKey === "services"
+                    ? "Funcionamento ainda não confirmado"
+                    : "Aguardando dados validados"}
+                </div>
+              </Link>
+            );
+          })}
         </div>
-        <SourceNote source="Bases municipais ainda não validadas" />
+        <SourceNote
+          source="Mapa: CNES e diretório municipal · demais módulos: registros públicos revisados"
+          period="Conforme a fonte indicada em cada página"
+        />
       </section>
       <section className="home-middle">
         <div className="panel map-preview">
@@ -186,7 +212,10 @@ export default function Home() {
               <MapPin size={18} />
               <div>
                 <strong>Itajaí · Santa Catarina</strong>
-                <span>Serviços aguardando verificação documental</span>
+                <span>
+                  Mapa de referência; consulte a página da rede para os pontos
+                  cadastrados.
+                </span>
               </div>
             </div>
           </div>
@@ -231,6 +260,16 @@ export default function Home() {
               <div>
                 <h3>Compromissos públicos</h3>
                 <p>Anúncios e execução comprovada</p>
+              </div>
+              <ArrowUpRight size={17} />
+            </Link>
+            <Link href="/atualizacoes-normativas">
+              <span className="round-icon blue">
+                <BookOpen size={21} />
+              </span>
+              <div>
+                <h3>Atualizações normativas</h3>
+                <p>Contexto federal da RAPS, sem benefício local identificado</p>
               </div>
               <ArrowUpRight size={17} />
             </Link>
@@ -296,9 +335,15 @@ export default function Home() {
         </div>
       </section>
       <div className="participation-strip">
-        <Users size={26} />
+        <img
+          className="participation-illustration"
+          src="/manus-storage/async-images/h1k4ztjz912XRa9iklgDN7/image-2.webp"
+          alt="Ilustração editorial de conversa comunitária inclusiva entre uma mulher negra, um homem jovem e uma mulher idosa em cadeira de rodas."
+          loading="lazy"
+          decoding="async"
+        />
         <div>
-          <h2>O controle social se faz com participação.</h2>
+          <h2>A escuta entre gerações também é participação.</h2>
           <p>
             Conheça a iniciativa, os critérios de monitoramento e como
             contribuir com informações verificáveis.

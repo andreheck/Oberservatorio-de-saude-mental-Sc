@@ -119,6 +119,13 @@ export default function Admin() {
   });
   const roles = rolesQuery.data || [];
   const canReview = roles.includes("admin") || roles.includes("reviewer");
+  const hasPortalManagementRole = roles.some(role => role !== "cism_member");
+  const canReadPrivateDocuments = roles.some(role =>
+    ["admin", "editor", "documents", "reviewer", "reader"].includes(role)
+  );
+  const canUploadPrivateDocuments = roles.some(role =>
+    ["admin", "editor", "documents"].includes(role)
+  );
   const canEdit =
     roles.includes("admin") ||
     roles.includes("editor") ||
@@ -209,6 +216,25 @@ export default function Admin() {
         </div>
       </div>
     );
+  if (rolesQuery.isLoading)
+    return (
+      <div className="content-page">
+        <div className="loading-line">Verificando permissões do portal…</div>
+      </div>
+    );
+  if (!hasPortalManagementRole)
+    return (
+      <div className="content-page">
+        <PageHeading
+          title="Área de gestão restrita"
+          description="Este espaço não concede acesso a membros da CISM; utilize a área reservada própria."
+        />
+        <Notice title="Permissão editorial não atribuída">
+          O login não concede permissões de administração. Para documentos da
+          comissão, acesse <a href="/cism">Área dos membros CISM</a>.
+        </Notice>
+      </div>
+    );
   return (
     <div className="content-page">
       <PageHeading
@@ -234,13 +260,19 @@ export default function Admin() {
         novo registro é um rascunho. Fluxo: Rascunho → Em revisão → Aprovado →
         Publicado. As permissões são verificadas no servidor.
       </Notice>
+      <Notice title="O papel CISM é de leitura restrita">
+        A atribuição é manual por administrador e substitui a permissão de
+        portal anterior. O membro CISM só pode consultar documentos publicados
+        para esse público; não edita, aprova, administra contas nem acessa os
+        demais documentos privados.
+      </Notice>
       <div className="tabs">
         {[
           "Registros",
           "Identidade do portal",
           "Importação CSV",
-          "Documentos privados",
-          "Permissões e auditoria",
+          ...(canReadPrivateDocuments ? ["Documentos privados"] : []),
+          ...(roles.includes("admin") ? ["Permissões e auditoria"] : []),
         ].map(t => (
           <button
             key={t}
@@ -661,8 +693,12 @@ export default function Admin() {
       {tab === "Importação CSV" && <CsvImport module={module} />}
       {tab === "Documentos privados" && (
         <>
-          <DocumentUpload />
-          <DocumentsManager internal />
+          {canUploadPrivateDocuments && <DocumentUpload />}
+          <DocumentsManager
+            internal
+            canSubmit={canUploadPrivateDocuments}
+            canReview={canReview}
+          />
         </>
       )}
       {tab === "Permissões e auditoria" && <Permissions />}
@@ -794,11 +830,16 @@ function CsvImport({ module }: { module: string }) {
 function DocumentUpload() {
   const [title, setTitle] = useState(""),
     [file, setFile] = useState<File | null>(null);
+  const [accessScope, setAccessScope] = useState<"public" | "cism">("public");
+  const utils = trpc.useUtils();
   const upload = trpc.portal.documentsUpload.useMutation({
     onSuccess: () => {
-      toast.success("Documento privado salvo. Não publicado.");
+      toast.success(
+        "Documento salvo como rascunho privado. Ainda não foi publicado."
+      );
       setFile(null);
       setTitle("");
+      utils.portal.documentsAdminList.invalidate();
     },
     onError: e => toast.error(e.message),
   });
@@ -829,6 +870,7 @@ function DocumentUpload() {
         }
         upload.mutate({
           title,
+          accessScope,
           mime: mime as
             | "application/pdf"
             | "image/png"
@@ -853,6 +895,16 @@ function DocumentUpload() {
         />
       </label>
       <label>
+        Público autorizado após publicação
+        <select
+          value={accessScope}
+          onChange={e => setAccessScope(e.target.value as "public" | "cism")}
+        >
+          <option value="public">Biblioteca pública</option>
+          <option value="cism">Somente membros CISM</option>
+        </select>
+      </label>
+      <label>
         Arquivo
         <input
           required
@@ -868,9 +920,10 @@ function DocumentUpload() {
         Guardar documento privado
       </button>
       <Notice title="Publicação de anexos">
-        O upload guarda o original privado. Vinculação editorial e divulgação
-        pública do arquivo dependem do fluxo de documentos; não há publicação
-        automática.
+        O upload guarda o original privado. O fluxo editorial mantém o rascunho
+        e a revisão fora da consulta. “Somente membros CISM” continuará
+        reservado mesmo depois de publicado; a seleção não altera permissões nem
+        cria membros automaticamente.
       </Notice>
     </form>
   );
@@ -913,8 +966,21 @@ function Permissions() {
                     <td>
                       {u.role === "admin"
                         ? "Administrador"
-                        : u.permissions?.join(", ") ||
-                          "Sem permissão editorial"}
+                        : u.permissions
+                            ?.map((role: string) => {
+                              const labels: Record<string, string> = {
+                                admin: "Administrador",
+                                editor: "Editor",
+                                finance: "Responsável financeiro",
+                                inspections: "Fiscalizações",
+                                documents: "Documentos",
+                                reviewer: "Revisor institucional",
+                                reader: "Leitor interno",
+                                cism_member: "Membro CISM — leitura restrita",
+                              };
+                              return labels[role] || role;
+                            })
+                            .join(", ") || "Sem permissão editorial"}
                     </td>
                     <td>
                       <select
@@ -930,15 +996,18 @@ function Permissions() {
                       >
                         <option value="">Selecionar papel</option>
                         {[
-                          "admin",
-                          "editor",
-                          "finance",
-                          "inspections",
-                          "documents",
-                          "reviewer",
-                          "reader",
-                        ].map(r => (
-                          <option key={r}>{r}</option>
+                          ["admin", "Administrador"],
+                          ["editor", "Editor"],
+                          ["finance", "Responsável financeiro"],
+                          ["inspections", "Fiscalizações"],
+                          ["documents", "Documentos"],
+                          ["reviewer", "Revisor institucional"],
+                          ["reader", "Leitor interno"],
+                          ["cism_member", "Membro CISM — leitura restrita"],
+                        ].map(([value, label]) => (
+                          <option key={value} value={value}>
+                            {label}
+                          </option>
                         ))}
                       </select>
                     </td>

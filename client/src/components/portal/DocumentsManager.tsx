@@ -32,8 +32,12 @@ export function DocumentDownload({ id }: { id: number }) {
 }
 export default function DocumentsManager({
   internal = false,
+  canSubmit = false,
+  canReview = false,
 }: {
   internal?: boolean;
+  canSubmit?: boolean;
+  canReview?: boolean;
 }) {
   const pub = trpc.portal.documentsList.useQuery(undefined, {
     enabled: !internal,
@@ -79,7 +83,7 @@ export default function DocumentsManager({
               <tr>
                 <th>Documento</th>
                 <th>Formato / tamanho</th>
-                <th>Acesso editorial</th>
+                <th>Acesso / estado</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -103,11 +107,19 @@ export default function DocumentsManager({
                     <br />
                     {(d.sizeBytes / 1024).toFixed(1)} KB
                   </td>
-                  <td>{labels[d.publication] || d.publication}</td>
+                  <td>
+                    <strong>
+                      {d.accessScope === "cism" ? "Somente CISM" : "Público"}
+                    </strong>
+                    <br />
+                    {d.accessScope === "cism" && d.publication === "published"
+                      ? "Disponível na área dos membros"
+                      : labels[d.publication] || d.publication}
+                  </td>
                   <td>
                     <div className="admin-actions">
                       <DocumentDownload id={d.id} />
-                      {internal && d.publication === "draft" && (
+                      {internal && canSubmit && d.publication === "draft" && (
                         <button
                           className="button button-secondary"
                           onClick={() =>
@@ -117,7 +129,7 @@ export default function DocumentsManager({
                           Enviar à revisão
                         </button>
                       )}
-                      {internal && d.publication === "review" && (
+                      {internal && canReview && d.publication === "review" && (
                         <button
                           className="button button-secondary"
                           onClick={() =>
@@ -127,37 +139,43 @@ export default function DocumentsManager({
                           Aprovar
                         </button>
                       )}
-                      {internal && d.publication === "approved" && (
-                        <button
-                          className="button button-primary"
-                          onClick={() =>
-                            change.mutate({
-                              id: d.id,
-                              publication: "published",
-                            })
-                          }
-                        >
-                          Publicar
-                        </button>
-                      )}
-                      {internal && d.publication === "published" && (
-                        <button
-                          className="button button-secondary"
-                          onClick={() => {
-                            const reason = window.prompt(
-                              "Justificativa obrigatória para despublicar:"
-                            );
-                            if (reason)
+                      {internal &&
+                        canReview &&
+                        d.publication === "approved" && (
+                          <button
+                            className="button button-primary"
+                            onClick={() =>
                               change.mutate({
                                 id: d.id,
-                                publication: "draft",
-                                reason,
-                              });
-                          }}
-                        >
-                          Despublicar
-                        </button>
-                      )}
+                                publication: "published",
+                              })
+                            }
+                          >
+                            {d.accessScope === "cism"
+                              ? "Publicar para CISM"
+                              : "Publicar"}
+                          </button>
+                        )}
+                      {internal &&
+                        canReview &&
+                        d.publication === "published" && (
+                          <button
+                            className="button button-secondary"
+                            onClick={() => {
+                              const reason = window.prompt(
+                                "Justificativa obrigatória para despublicar:"
+                              );
+                              if (reason)
+                                change.mutate({
+                                  id: d.id,
+                                  publication: "draft",
+                                  reason,
+                                });
+                            }}
+                          >
+                            Despublicar
+                          </button>
+                        )}
                     </div>
                   </td>
                 </tr>

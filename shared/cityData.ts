@@ -139,6 +139,30 @@ export const transparencySnapshot = {
   minimumShareAsDisplayed: "15,00%",
 } as const;
 
+export const mentalHealthActivitySnapshot = {
+  sourceName: "Prefeitura de Itajaí · notícia sobre ações de saúde mental",
+  sourceUrl:
+    "https://itajai.sc.gov.br/noticias/37613/setembro-amarelo-reune-acoes-de-saude-mental-em-itajai",
+  period: "Maio a agosto de 2026",
+  publicationDate: "17/09/2026",
+  collectedAt: "20/10/2026",
+  totalRecords: 27084,
+  categories: [
+    { label: "Psiquiatria ambulatorial", count: 564, measure: "Atendimentos" },
+    { label: "Psicologia infantil", count: 1968, measure: "Atendimentos" },
+    { label: "Psicologia adulto", count: 5707, measure: "Atendimentos" },
+    { label: "Clínicas de psicologia", count: 3890, measure: "Atendimentos" },
+    { label: "CAPS II", count: 7127, measure: "Procedimentos" },
+    { label: "CAPS AD", count: 3429, measure: "Procedimentos" },
+    { label: "CAPSi", count: 2850, measure: "Procedimentos" },
+    {
+      label: "Outros serviços (Ceredi, CEPICS, CAID e UPAs)",
+      count: 1549,
+      measure: "Atendimentos",
+    },
+  ],
+} as const;
+
 export function buildPopulationAgeCsv(): string {
   const rows = [
     ["municipio_codigo_ibge", "municipio", "ano", "faixa_etaria", "pessoas"],

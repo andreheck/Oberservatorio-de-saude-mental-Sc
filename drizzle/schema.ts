@@ -39,6 +39,7 @@ export const PORTAL_ROLES = [
   "documents",
   "reviewer",
   "reader",
+  "cism_member",
 ] as const;
 export type PortalRole = (typeof PORTAL_ROLES)[number];
 
@@ -49,6 +50,10 @@ export const PORTAL_PUBLICATIONS = [
   "published",
 ] as const;
 export type PortalPublication = (typeof PORTAL_PUBLICATIONS)[number];
+
+export const PORTAL_DOCUMENT_ACCESS_SCOPES = ["public", "cism"] as const;
+export type PortalDocumentAccessScope =
+  (typeof PORTAL_DOCUMENT_ACCESS_SCOPES)[number];
 
 export const userPermissions = mysqlTable(
   "userPermissions",
@@ -159,6 +164,9 @@ export const portalDocuments = mysqlTable(
     publication: mysqlEnum("publication", [...PORTAL_PUBLICATIONS])
       .default("draft")
       .notNull(),
+    accessScope: mysqlEnum("accessScope", [...PORTAL_DOCUMENT_ACCESS_SCOPES])
+      .default("public")
+      .notNull(),
     uploadedBy: int("uploadedBy").notNull(),
     createdAt: timestamp("createdAt").defaultNow().notNull(),
     updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
@@ -167,6 +175,9 @@ export const portalDocuments = mysqlTable(
     publicationIdx: index("portalDocuments_publication_idx").on(
       table.publication
     ),
+    accessScopePublicationIdx: index(
+      "portalDocuments_access_scope_publication_idx"
+    ).on(table.accessScope, table.publication),
   })
 );
 

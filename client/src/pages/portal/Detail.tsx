@@ -52,7 +52,7 @@ export default function Detail() {
           text="O registro pode não existir, estar em revisão ou ter acesso restrito. Documentos internos não são expostos."
         />
         <Link
-          href="/"
+          href="/inicio"
           className="button button-secondary"
           style={{ marginTop: 20 }}
         >
@@ -64,7 +64,7 @@ export default function Detail() {
   const events = r.events || [];
   return (
     <div className="content-page">
-      <Link href={m?.path || "/"} className="back-link">
+      <Link href={m?.path || "/inicio"} className="back-link">
         <ArrowLeft size={14} /> Voltar para {m?.title || "o panorama"}
       </Link>
       <PageHeading

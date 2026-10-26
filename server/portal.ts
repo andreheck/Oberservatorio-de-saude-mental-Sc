@@ -2,8 +2,10 @@ import { TRPCError } from "@trpc/server";
 import { and, desc, eq, like, or } from "drizzle-orm";
 import { z } from "zod";
 import {
+  PORTAL_DOCUMENT_ACCESS_SCOPES,
   PORTAL_PUBLICATIONS,
   PORTAL_ROLES,
+  type PortalDocumentAccessScope,
   type PortalPublication,
   type PortalRecord,
   type PortalDocument,
@@ -22,17 +24,21 @@ import { ENV } from "./_core/env";
 import { protectedProcedure, publicProcedure, router } from "./_core/trpc";
 
 export const DEFAULT_PORTAL_SETTINGS = {
-  name: "Observatório da Saúde Mental de Itajaí",
+  name: "Observatório de Saúde Mental (Sul do Brasil)",
   subtitle:
     "Transparência, participação social e monitoramento das políticas públicas de saúde mental.",
   signature:
-    "Uma iniciativa de acompanhamento e divulgação das políticas de saúde mental em Itajaí, relacionada à atuação da CISM no COMUSA.",
+    "Iniciativa de acompanhamento relacionada à atuação da CISM no COMUSA. Os dados disponíveis nesta etapa têm recorte municipal de Itajaí/SC.",
   contactEmail: "",
 } as const;
 
 const publicationValues = [...PORTAL_PUBLICATIONS] as [
   PortalPublication,
   ...PortalPublication[],
+];
+const accessScopeValues = [...PORTAL_DOCUMENT_ACCESS_SCOPES] as [
+  PortalDocumentAccessScope,
+  ...PortalDocumentAccessScope[],
 ];
 const roleValues = [...PORTAL_ROLES] as [PortalRole, ...PortalRole[]];
 
@@ -93,6 +99,7 @@ const documentUploadInput = z.object({
   title: z.string().trim().min(1).max(255),
   mime: z.enum(["application/pdf", "image/png", "image/jpeg", "text/plain"]),
   base64: z.string().min(1).max(7_500_000),
+  accessScope: z.enum(accessScopeValues).default("public"),
 });
 
 const documentTransitionInput = z.object({
@@ -129,6 +136,16 @@ export type PortalPublicRecord = {
   createdAt: Date;
   updatedAt: Date;
   data: Record<string, unknown>;
+};
+
+export type PortalDocumentMetadata = {
+  id: number;
+  title: string;
+  mime: string;
+  sizeBytes: number;
+  publication: PortalPublication;
+  accessScope: PortalDocumentAccessScope;
+  createdAt: Date;
 };
 
 export type RequestTimeInput = {
@@ -356,7 +373,7 @@ export function canEditModule(
   );
 }
 
-/** Roles that may inspect private document metadata or download private files. */
+/** Roles that may inspect existing internal document metadata or files. */
 export function canReadDocuments(roles: ReadonlySet<PortalRole>): boolean {
   return hasAnyRole(roles, [
     "admin",
@@ -367,11 +384,53 @@ export function canReadDocuments(roles: ReadonlySet<PortalRole>): boolean {
   ]);
 }
 
-/** Published documents are public; every other publication requires an allowed role. */
-export function canDownloadDocument(
+/** Only admins and CISM members may use the CISM-only published listing. */
+export function canReadCismDocuments(roles: ReadonlySet<PortalRole>): boolean {
+  return hasAnyRole(roles, ["admin", "cism_member"]);
+}
+
+/**
+ * CISM members may download only published CISM material. Existing document
+ * administrators (admin/documents/reviewer) retain their internal workflow
+ * access, including non-published material, without granting it to members.
+ */
+export function canDownloadCismDocument(
   publication: PortalPublication,
   roles: ReadonlySet<PortalRole>
 ): boolean {
+  if (hasAnyRole(roles, ["admin", "documents", "reviewer"])) return true;
+  return publication === "published" && roles.has("cism_member");
+}
+
+/** Published public documents are anonymous; internal material keeps its existing policy. */
+export function canDownloadDocument(
+  publication: PortalPublication,
+  roles: ReadonlySet<PortalRole>,
+  accessScope?: PortalDocumentAccessScope
+): boolean;
+export function canDownloadDocument(
+  publication: PortalPublication,
+  accessScope: PortalDocumentAccessScope,
+  roles?: ReadonlySet<PortalRole>
+): boolean;
+export function canDownloadDocument(
+  publication: PortalPublication,
+  rolesOrScope: ReadonlySet<PortalRole> | PortalDocumentAccessScope,
+  scopeOrRoles: PortalDocumentAccessScope | ReadonlySet<PortalRole> = "public"
+): boolean {
+  const isScopeFirst = typeof rolesOrScope === "string";
+  const accessScope = isScopeFirst
+    ? rolesOrScope
+    : typeof scopeOrRoles === "string"
+      ? scopeOrRoles
+      : "public";
+  const roles = isScopeFirst
+    ? typeof scopeOrRoles === "object" && scopeOrRoles !== null
+      ? scopeOrRoles
+      : new Set<PortalRole>()
+    : rolesOrScope;
+  if (accessScope === "cism")
+    return canDownloadCismDocument(publication, roles);
   return publication === "published" || canReadDocuments(roles);
 }
 
@@ -658,17 +717,60 @@ function requestTimeForRecord(
 function documentMetadata(
   document: Pick<
     PortalDocument,
-    "id" | "title" | "mime" | "sizeBytes" | "publication" | "createdAt"
+    | "id"
+    | "title"
+    | "mime"
+    | "sizeBytes"
+    | "publication"
+    | "accessScope"
+    | "createdAt"
   >
-) {
+): PortalDocumentMetadata {
   return {
     id: document.id,
     title: document.title,
     mime: document.mime,
     sizeBytes: document.sizeBytes,
     publication: document.publication,
+    accessScope: document.accessScope,
     createdAt: document.createdAt,
   };
+}
+
+type PortalDocumentAccessRow = Pick<
+  PortalDocument,
+  | "id"
+  | "title"
+  | "mime"
+  | "sizeBytes"
+  | "publication"
+  | "accessScope"
+  | "createdAt"
+>;
+
+/** Public document metadata never includes CISM-scope rows or content. */
+export function filterPublicDocuments(
+  documents: readonly PortalDocumentAccessRow[]
+): PortalDocumentMetadata[] {
+  return documents
+    .filter(
+      document =>
+        document.publication === "published" &&
+        document.accessScope === "public"
+    )
+    .map(documentMetadata);
+}
+
+/** CISM listing metadata is restricted to explicitly scoped, published rows. */
+export function filterCismDocuments(
+  documents: readonly PortalDocumentAccessRow[]
+): PortalDocumentMetadata[] {
+  return documents
+    .filter(
+      document =>
+        document.publication === "published" && document.accessScope === "cism"
+    )
+    .map(documentMetadata);
 }
 
 export const portalRouter = router({
@@ -754,12 +856,18 @@ export const portalRouter = router({
         mime: portalDocuments.mime,
         sizeBytes: portalDocuments.sizeBytes,
         publication: portalDocuments.publication,
+        accessScope: portalDocuments.accessScope,
         createdAt: portalDocuments.createdAt,
       })
       .from(portalDocuments)
-      .where(eq(portalDocuments.publication, "published" as const))
+      .where(
+        and(
+          eq(portalDocuments.publication, "published" as const),
+          eq(portalDocuments.accessScope, "public" as const)
+        )
+      )
       .orderBy(desc(portalDocuments.createdAt));
-    return rows.map(documentMetadata);
+    return filterPublicDocuments(rows);
   }),
 
   documentsAdminList: protectedProcedure.query(async ({ ctx }) => {
@@ -777,11 +885,54 @@ export const portalRouter = router({
         mime: portalDocuments.mime,
         sizeBytes: portalDocuments.sizeBytes,
         publication: portalDocuments.publication,
+        accessScope: portalDocuments.accessScope,
         createdAt: portalDocuments.createdAt,
       })
       .from(portalDocuments)
       .orderBy(desc(portalDocuments.createdAt));
     return rows.map(documentMetadata);
+  }),
+
+  /** Protected, non-content status used by authenticated access controls. */
+  documentsAccessStatus: protectedProcedure.query(async ({ ctx }) => {
+    const db = await requireDb();
+    const { roles } = await requireRoles(db, ctx, () => true);
+    return {
+      accessScope: "cism" as const,
+      isCismMember: roles.has("cism_member"),
+      canReadCismDocuments: canReadCismDocuments(roles),
+      canDownloadPublishedCism: canDownloadCismDocument("published", roles),
+    };
+  }),
+
+  /** CISM-only listing: published metadata only, never document content/base64. */
+  documentsCismList: protectedProcedure.query(async ({ ctx }) => {
+    const db = await requireDb();
+    await requireRoles(
+      db,
+      ctx,
+      canReadCismDocuments,
+      "Você não tem permissão para ler documentos da CISM"
+    );
+    const rows = await db
+      .select({
+        id: portalDocuments.id,
+        title: portalDocuments.title,
+        mime: portalDocuments.mime,
+        sizeBytes: portalDocuments.sizeBytes,
+        publication: portalDocuments.publication,
+        accessScope: portalDocuments.accessScope,
+        createdAt: portalDocuments.createdAt,
+      })
+      .from(portalDocuments)
+      .where(
+        and(
+          eq(portalDocuments.publication, "published" as const),
+          eq(portalDocuments.accessScope, "cism" as const)
+        )
+      )
+      .orderBy(desc(portalDocuments.createdAt));
+    return filterCismDocuments(rows);
   }),
 
   detail: publicProcedure
@@ -820,7 +971,12 @@ export const portalRouter = router({
       const publishedDocuments = await db
         .select({ id: portalDocuments.id })
         .from(portalDocuments)
-        .where(eq(portalDocuments.publication, "published" as const));
+        .where(
+          and(
+            eq(portalDocuments.publication, "published" as const),
+            eq(portalDocuments.accessScope, "public" as const)
+          )
+        );
       const publishedDocumentIds = new Set(
         publishedDocuments.map(document => document.id)
       );
@@ -1250,6 +1406,7 @@ export const portalRouter = router({
           sizeBytes: bytes.length,
           content: bytes.toString("base64"),
           publication: "draft",
+          accessScope: input.accessScope,
           uploadedBy: user.id,
         });
         documentId = Number(inserted[0]?.insertId);
@@ -1266,6 +1423,7 @@ export const portalRouter = router({
             mime: input.mime,
             sizeBytes: bytes.length,
             publication: "draft",
+            accessScope: input.accessScope,
           },
         });
       });
@@ -1275,6 +1433,7 @@ export const portalRouter = router({
         mime: input.mime,
         sizeBytes: bytes.length,
         publication: "draft" as const,
+        accessScope: input.accessScope,
       };
     }),
 
@@ -1380,9 +1539,18 @@ export const portalRouter = router({
           code: "NOT_FOUND",
           message: "Documento não encontrado",
         });
-      if (document.publication !== "published") {
+      if (
+        document.accessScope === "cism" ||
+        document.publication !== "published"
+      ) {
         const roles = await getRoles(db, ctx);
-        if (!canDownloadDocument(document.publication, roles)) {
+        if (
+          !canDownloadDocument(
+            document.publication,
+            roles,
+            document.accessScope
+          )
+        ) {
           throw new TRPCError({
             code: "FORBIDDEN",
             message:
@@ -1396,6 +1564,7 @@ export const portalRouter = router({
         mime: document.mime,
         sizeBytes: document.sizeBytes,
         publication: document.publication,
+        accessScope: document.accessScope,
         base64: document.content,
       };
     }),

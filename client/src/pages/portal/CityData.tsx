@@ -10,6 +10,7 @@ import {
   cityDataConsultedAt,
   cityIndicators,
   ibgeSources,
+  mentalHealthActivitySnapshot,
   populationByAge,
   populationTotal,
   transparencySnapshot,
@@ -36,6 +37,18 @@ function downloadAgeCsv() {
 
 export default function CityData() {
   const maxPopulation = Math.max(...populationByAge.map(item => item.count));
+  const mentalHealthActivityGroups = [
+    ...new Set(mentalHealthActivitySnapshot.categories.map(item => item.measure)),
+  ].map(measure => {
+    const categories = mentalHealthActivitySnapshot.categories.filter(
+      item => item.measure === measure
+    );
+    return {
+      measure,
+      categories,
+      max: Math.max(...categories.map(item => item.count)),
+    };
+  });
 
   return (
     <div className="content-page">
@@ -290,9 +303,97 @@ export default function CityData() {
         </div>
       </section>
 
-      <section className="city-data-sources" aria-labelledby="fontes-primarias">
+      <section className="city-mental-health-section">
         <SectionTitle
           number="02"
+          title="Saúde mental — registros por serviço"
+          subtitle="Retrato municipal publicado pela Prefeitura; os valores não são pessoas únicas nem metas da PAS."
+        />
+        <div className="panel mental-health-activity-panel">
+          <div className="mental-health-activity-heading">
+            <div>
+              <span className="eyebrow">
+                {mentalHealthActivitySnapshot.period.toUpperCase()}
+              </span>
+              <h2>Atendimentos e procedimentos reportados</h2>
+              <p>
+                A notícia municipal informa um total de registros no período e
+                discrimina os grupos abaixo.
+              </p>
+            </div>
+            <div className="mental-health-activity-total">
+              <strong>
+                {mentalHealthActivitySnapshot.totalRecords.toLocaleString("pt-BR")}
+              </strong>
+              <span>registros divulgados pela Prefeitura</span>
+            </div>
+          </div>
+          {mentalHealthActivityGroups.map(group => (
+            <div
+              className="mental-health-activity-group"
+              key={group.measure}
+              role="group"
+              aria-label={`${group.measure} por serviço`}
+            >
+              <h3>{group.measure} informados</h3>
+              <ul
+                className="mental-health-activity-list"
+                aria-label={`${group.measure} por serviço, maio a agosto de 2026`}
+              >
+                {group.categories.map(category => (
+                  <li
+                    className="mental-health-activity-row"
+                    key={category.label}
+                  >
+                    <div className="mental-health-activity-label">
+                      <strong>{category.label}</strong>
+                    </div>
+                    <strong className="mental-health-activity-count">
+                      {category.count.toLocaleString("pt-BR")}
+                    </strong>
+                    <span
+                      className="mental-health-activity-track"
+                      aria-hidden="true"
+                    >
+                      <span
+                        style={{
+                          width: `${(category.count / group.max) * 100}%`,
+                        }}
+                      />
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          <p className="city-caveat">
+            São atendimentos/procedimentos registrados, não pessoas únicas. A
+            fonte agrega atendimentos e procedimentos e não apresenta
+            distribuição por bairro, denominadores territoriais ou extração
+            metodológica detalhada; as escalas das barras são reiniciadas em
+            cada grupo, então atendimentos e procedimentos não são comparáveis
+            diretamente. Este quadro não deve ser usado como prevalência,
+            capacidade, cobertura ou mapa de calor.
+          </p>
+          <SourceNote
+            source={mentalHealthActivitySnapshot.sourceName}
+            period={mentalHealthActivitySnapshot.period}
+            date={`Publicação: ${mentalHealthActivitySnapshot.publicationDate} · consulta: ${mentalHealthActivitySnapshot.collectedAt}`}
+          />
+          <a
+            className="text-link"
+            href={mentalHealthActivitySnapshot.sourceUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Conferir a publicação municipal <ArrowUpRight size={14} />
+          </a>
+        </div>
+      </section>
+
+      <section className="city-data-sources" aria-labelledby="fontes-primarias">
+        <SectionTitle
+          number="03"
           title="Fontes primárias"
           subtitle="Links para conferência, atualização e aprofundamento dos conjuntos apresentados."
         />

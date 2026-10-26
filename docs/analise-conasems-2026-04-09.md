@@ -1,0 +1,43 @@
+# Análise da legislação diária do CONASEMS — 9 de abril de 2026
+
+**Consulta:** 25/10/2026. **Objetivo:** identificar informações que podem ser usadas no Observatório de Saúde Mental com recorte atual em Itajaí/SC, sem confundir atos nacionais com serviços, recursos ou execução municipal.
+
+## Síntese
+
+A página do CONASEMS é um índice secundário útil para localizar atos, mas a conferência foi feita nos textos oficiais do Diário Oficial da União (DOU). Nos oito atos potencialmente relacionados a APS, RAPS, SRT, Unidade de Acolhimento, serviço hospitalar de referência ou recursos para equipamentos, **nenhum comprova benefício, habilitação, serviço implantado ou repasse destinado a Itajaí**. A página pode subsidiar uma seção separada de **contexto normativo nacional**, desde que cada item identifique expressamente o território e não seja apresentado como atualização local.
+
+Valores de custeio estabelecidos ou incorporados aos limites financeiros e transferências previstas não são comprovação de pagamento, despesa liquidada/paga ou funcionamento do serviço. As portarias 10.727, 10.738, 10.732, 10.728, 10.737 e 10.747 descrevem transferência federal condicionada ao processo autorizativo indicado no ato; a habilitação também não comprova operação local.
+
+## Atos que podem servir apenas como contexto nacional
+
+| Ato e assunto | Território indicado no texto oficial | Valores previstos/estabelecidos no ato | Uso editorial recomendado |
+|---|---|---|---|
+| **Portaria GM/MS nº 9.082, de 03/12/2025** — credenciamento/habilitação de equipes e serviços de Atenção Primária à Saúde (APS), entre outros componentes. | Anexos abrangem diversos estados. Entre os municípios de SC identificados estão Concórdia, Campos Novos e Imbituba; **Itajaí não foi identificado**. | Totais nacionais previstos: R$ 113.251.492,80 para custeio em 2026 e R$ 107.869.041,70 em 2027; R$ 6.216.000,00 em 2026, em parcela única, para investimento em Sesb/CEO. São valores agregados, não individualizados para Itajaí. | Só contexto nacional, se houver seção normativa. Não inserir como incentivo ou recurso de Itajaí. A transferência de custeio depende do cadastramento/atualização no CNES e demais condições do ato. O link divulgado pelo CONASEMS não retornou o texto; a consulta oficial foi feita na URL DOU terminada em `673001731`. [Texto oficial no DOU](https://www.in.gov.br/web/dou/-/portaria-gm/ms-n-9.082-de-3-de-dezembro-de-2025-673001731). |
+| **Portaria GM/MS nº 10.727, de 08/04/2026** — habilita duas Equipes de Avaliação e Acompanhamento de Medidas Terapêuticas aplicáveis a pessoas com transtorno mental em conflito com a lei (EAP-Desinst). | Uma equipe em João Pessoa/PB e outra em Porto Alegre/RS; **não cita Itajaí nem SC**. | R$ 1.584.000,00 anuais no total (R$ 792.000,00 por equipe/ano); impacto de R$ 1.056.000,00 em 2026, com efeitos a partir da 5ª parcela. | É o item de contexto nacional mais diretamente relacionado a cuidado em saúde mental e justiça. Pode ser explicado como política/habilitação federal nesses dois locais; não atribuir equipe, cobertura ou recurso a Itajaí. [Texto oficial no DOU](https://www.in.gov.br/web/dou/-/portaria-gm/ms-n-10.727-de-8-de-abril-de-2026-698599243). |
+| **Portaria GM/MS nº 10.738, de 08/04/2026** — habilita Unidade de Acolhimento Adulto. | João Pessoa/PB, sob gestão estadual; **não cita Itajaí nem SC**. | R$ 600.000,00 anuais (R$ 50.000,00 mensais); impacto de R$ 400.000,00 em 2026. | Contexto nacional sobre habilitação e custeio de Unidade de Acolhimento. Não apresentar como expansão da rede de Itajaí. [Texto oficial no DOU](https://www.in.gov.br/web/dou/-/portaria-gm/ms-n-10.738-de-8-de-abril-de-2026-698588400). |
+| **Portaria GM/MS nº 10.732, de 08/04/2026** — habilita Serviço Hospitalar de Referência (SHR), código 06.36, com dois leitos, no estabelecimento CNES 2751003. | Irmandade da Santa Casa de Misericórdia de Junqueirópolis/SP, gestão municipal; **não cita Itajaí nem SC**. | R$ 134.642,64 anuais (R$ 11.220,22 mensais); impacto de R$ 89.761,76 em 2026. | Contexto nacional sobre habilitação/custeio de serviço hospitalar de referência, sempre identificado como Junqueirópolis/SP. Não inferir leitos ou recursos para Itajaí. [Texto oficial no DOU](https://www.in.gov.br/web/dou/-/portaria-gm/ms-n-10.732-de-8-de-abril-de-2026-698584190). |
+| **Portaria GM/MS nº 10.728, de 08/04/2026** — habilita Serviços Residenciais Terapêuticos (SRT). | Pé de Serra/BA, Carapicuíba/SP, Guarapuava/PR, Rio de Janeiro/RJ e Joinville/SC. A menção catarinense é **Joinville, não Itajaí**. | R$ 1.244.661,12 anuais no total; em Joinville, R$ 30.506,40 mensais e R$ 366.076,80 anuais; impacto total de R$ 829.774,08 em 2026. | Pode informar contexto nacional de SRT e financiamento, destacando o município nominalmente habilitado. Não atribuir habilitação, implantação ou repasse a Itajaí por pertencer ao mesmo estado. [Texto oficial no DOU](https://www.in.gov.br/web/dou/-/portaria-gm/ms-n-10.728-de-8-de-abril-de-2026-698592472). |
+| **Portaria GM/MS nº 10.737, de 08/04/2026** — habilita SRT. | Salvador/BA e Junqueirópolis/SP; **não cita Itajaí nem SC**. | R$ 610.128,00 anuais no total; Salvador: R$ 244.051,20/ano; Junqueirópolis: R$ 366.076,80/ano. | Contexto nacional de SRT, não atualização local. [Texto oficial no DOU](https://www.in.gov.br/web/dou/-/portaria-gm/ms-n-10.737-de-8-de-abril-de-2026-698609199). |
+| **Portaria GM/MS nº 10.747, de 08/04/2026** — habilita SRT tipo II para as localidades listadas. | Campo Grande/MS e Niterói/RJ; **não cita Itajaí nem SC**. | R$ 658.938,24 anuais no total; Campo Grande: R$ 366.076,80/ano; Niterói: R$ 292.861,44/ano. | Contexto nacional de SRT, não atualização local. [Texto oficial no DOU](https://www.in.gov.br/web/dou/-/portaria-gm/ms-n-10.747-de-8-de-abril-de-2026-698596454). |
+
+### Ato que deve aguardar confirmação
+
+A página do CONASEMS descreve a **Portaria GM/MS nº 10.725, de 08/04/2026** como revogação da Portaria nº 10.246/2026, relativa a autorização de recursos para equipamentos e materiais permanentes. O texto dispositivo do DOU não pôde ser consultado nesta verificação. Portanto, não é possível confirmar o alcance, destinatários, valores ou efeito em Itajaí. **Não publicar como atualização local nem atribuir finalidade/beneficiário além da ementa secundária** até obter o texto oficial. [Link do DOU indicado pelo CONASEMS](https://www.in.gov.br/web/dou/-/portaria-gm/ms-n-10.725-de-8-de-abril-de-2026-698598050).
+
+## O que não aproveitar como atualização local
+
+A Portaria 10.222/2026 trata de controle de acesso a ativos de tecnologia da informação no Ministério da Saúde. Os demais itens da página incluem atos de CEBAS e listagens do Projeto Mais Médicos. Sem relação direta demonstrada com serviços, metas, execução financeira ou decisões de saúde mental de Itajaí, não devem ser inseridos no painel municipal. Podem ser encontrados na [página do CONASEMS](https://portal.conasems.org.br/legislacao-diaria/2754_legislacao-diaria-nacional-9-de-abril-de-2026), mas a simples presença no mesmo boletim não os torna pertinentes ao Observatório.
+
+## Modelo seguro para uma futura seção normativa
+
+A área pública `/atualizacoes-normativas` aplica este modelo: cada registro traz número e data do ato; assunto; municípios/UFs expressamente citados; link do DOU; natureza e período dos valores; condições de transferência; e o rótulo **“Contexto nacional — não identificado como benefício de Itajaí”**. Mantém separados os estados “habilitado/autorizado”, “transferência prevista”, “valor transferido comprovado” e “despesa liquidada/paga comprovada”. Só converter um ato em atualização local depois de confirmar que Itajaí aparece no dispositivo/anexo e, para afirmar execução, cruzar com comprovantes oficiais de transferência, CNES e/ou dados financeiros aplicáveis.
+
+## Fontes consultadas
+
+1. CONASEMS, *Legislação Diária Nacional — 09/04/2026*, índice secundário: https://portal.conasems.org.br/legislacao-diaria/2754_legislacao-diaria-nacional-9-de-abril-de-2026 (consulta em 25/10/2026).
+2. Textos oficiais individuais do Diário Oficial da União, ligados em cada linha da tabela e na nota da Portaria 10.725.
+
+
+## Implementação pública — 25/10/2026
+
+Os seis atos da RAPS e a Portaria 9.082/2025 foram apresentados em `/atualizacoes-normativas`, com links para o DOU, localidades citadas, distinção de valores do ato e ressalva expressa de que nenhum dos atos selecionados identifica benefício para Itajaí. O item 10.725 foi mantido fora da página enquanto não houver confirmação do texto oficial. A implementação foi verificada em Preview desktop/mobile e por SSR/manifesto; não está publicada no domínio final enquanto não houver checkpoint e deploy correspondentes.

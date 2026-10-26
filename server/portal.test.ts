@@ -1,10 +1,20 @@
 import { describe, expect, it } from "vitest";
-import type { PortalRecord, PortalRole } from "../drizzle/schema";
+import type {
+  PortalDocument,
+  PortalRecord,
+  PortalRole,
+} from "../drizzle/schema";
 import {
   calcRequestTime,
   canAddEventToRecord,
+  canDownloadCismDocument,
   canDownloadDocument,
+  canEditModule,
+  canReadCismDocuments,
   canReadDocuments,
+  canReadModule,
+  filterCismDocuments,
+  filterPublicDocuments,
   filterPublicRecords,
   validateDocumentSignature,
   validateRecordEditableForSave,
@@ -29,6 +39,23 @@ function record(overrides: Partial<PortalRecord> = {}): PortalRecord {
     data: { public: true },
     createdBy: 10,
     updatedBy: 10,
+    createdAt: now,
+    updatedAt: now,
+    ...overrides,
+  };
+}
+
+function document(overrides: Partial<PortalDocument> = {}): PortalDocument {
+  const now = new Date("2025-01-02T12:00:00.000Z");
+  return {
+    id: 1,
+    title: "Documento interno",
+    mime: "application/pdf",
+    sizeBytes: 12,
+    content: "c2VjcmV0",
+    publication: "published",
+    accessScope: "public",
+    uploadedBy: 10,
     createdAt: now,
     updatedAt: now,
     ...overrides,
@@ -270,6 +297,54 @@ describe("portal publication and document permissions", () => {
     expect(canDownloadDocument("draft", roles())).toBe(false);
     expect(canDownloadDocument("published", roles())).toBe(true);
     expect(canDownloadDocument("draft", roles("finance"))).toBe(false);
+  });
+
+  it("keeps CISM documents out of the public list", () => {
+    const result = filterPublicDocuments([
+      document(),
+      document({ id: 2, accessScope: "cism", title: "Ata reservada" }),
+      document({ id: 3, publication: "draft", title: "Rascunho público" }),
+    ]);
+    expect(result).toHaveLength(1);
+    expect(result[0]).toMatchObject({
+      id: 1,
+      publication: "published",
+      accessScope: "public",
+    });
+    expect(result[0]).not.toHaveProperty("content");
+  });
+
+  it("blocks anonymous CISM downloads and limits members to published CISM files", () => {
+    expect(canDownloadDocument("published", roles(), "cism")).toBe(false);
+    expect(canDownloadDocument("published", "cism", roles())).toBe(false);
+    expect(canDownloadCismDocument("published", roles("cism_member"))).toBe(
+      true
+    );
+    for (const publication of ["draft", "review", "approved"] as const) {
+      expect(
+        canDownloadDocument(publication, roles("cism_member"), "cism")
+      ).toBe(false);
+    }
+    expect(canReadDocuments(roles("cism_member"))).toBe(false);
+    expect(canReadCismDocuments(roles("cism_member"))).toBe(true);
+    expect(canReadModule(roles("cism_member"), "documents")).toBe(false);
+    expect(canEditModule(roles("cism_member"), "documents")).toBe(false);
+  });
+
+  it("lists only published CISM metadata and never returns base64", () => {
+    const result = filterCismDocuments([
+      document({ id: 1, accessScope: "cism" }),
+      document({ id: 2, accessScope: "cism", publication: "review" }),
+      document({ id: 3, accessScope: "public" }),
+    ]);
+    expect(result).toHaveLength(1);
+    expect(result[0]).toMatchObject({
+      id: 1,
+      accessScope: "cism",
+      publication: "published",
+    });
+    expect(result[0]).not.toHaveProperty("content");
+    expect(result[0]).not.toHaveProperty("base64");
   });
 });
 

@@ -28,6 +28,20 @@ export default function Search() {
       description:
         "Perfil municipal com fontes oficiais do IBGE e da transparência de Itajaí.",
     },
+    {
+      key: "mental-health-plan",
+      path: "/metas-saude",
+      title: "Metas da saúde mental 2026–2029",
+      description:
+        "Linha do tempo de metas selecionadas da PAS, com linha de base, previsão e fonte; execução ainda não informada.",
+    },
+    {
+      key: "normative-updates",
+      path: "/atualizacoes-normativas",
+      title: "Atualizações normativas nacionais",
+      description:
+        "Portarias GM/MS 10.727, 10.728, 10.732, 10.737, 10.738 e 10.747 de 2026 e Portaria 9.082 de 2025. Atos federais da RAPS e APS verificados no DOU; localidades citadas e ressalva de que não foi identificado benefício para Itajaí.",
+    },
   ];
   const matching = searchableModules.filter(m =>
     norm(m.title + " " + m.description).includes(norm(query))

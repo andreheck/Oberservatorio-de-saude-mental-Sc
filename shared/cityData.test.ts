@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   buildPopulationAgeCsv,
   cityIndicators,
+  mentalHealthActivitySnapshot,
   populationByAge,
   populationTotal,
 } from "./cityData";
@@ -11,6 +12,18 @@ describe("perfil demográfico municipal", () => {
     expect(populationByAge.reduce((sum, group) => sum + group.count, 0)).toBe(
       populationTotal
     );
+  });
+
+  it("reconcilia os serviços de saúde mental com o total publicado", () => {
+    const sum = mentalHealthActivitySnapshot.categories.reduce(
+      (total, category) => total + category.count,
+      0
+    );
+
+    expect(sum).toBe(mentalHealthActivitySnapshot.totalRecords);
+    expect(
+      new Set(mentalHealthActivitySnapshot.categories.map(item => item.measure))
+    ).toEqual(new Set(["Atendimentos", "Procedimentos"]));
   });
 
   it("mantém a estimativa de 2026 separada da contagem censitária", () => {

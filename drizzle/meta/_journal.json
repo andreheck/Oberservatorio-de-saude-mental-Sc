@@ -15,6 +15,13 @@
       "when": 1792457717956,
       "tag": "0001_portal",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1792538455063,
+      "tag": "0002_cism_scope",
+      "breakpoints": true
     }
   ]
 }

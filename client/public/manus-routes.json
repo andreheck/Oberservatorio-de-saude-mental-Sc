@@ -1,20 +1,21 @@
 {
   "routes": [
-    { "path": "/", "title": "Panorama da saúde mental" },
+    { "path": "/", "title": "Observatório de Saúde Mental (Sul do Brasil) — entrada; dados atuais de Itajaí/SC" },
+    { "path": "/inicio", "title": "Panorama da saúde mental" },
     { "path": "/dados-orcamento", "title": "Dados e orçamento" },
     { "path": "/dados-da-cidade", "title": "Dados oficiais da cidade" },
     { "path": "/mapa-raps", "title": "Mapa da RAPS" },
+    { "path": "/metas-saude", "title": "PAS 2026–2029 e prioridades de monitoramento" },
+    { "path": "/atualizacoes-normativas", "title": "Atualizações normativas — contexto nacional" },
     { "path": "/profissionais", "title": "Profissionais" },
     { "path": "/fiscalizacoes", "title": "Fiscalizações" },
     { "path": "/solicitacoes", "title": "Solicitações e prazos" },
     { "path": "/acoes-executivo", "title": "Ações do Executivo" },
-    {
-      "path": "/comunidades-terapeuticas",
-      "title": "Comunidades terapêuticas"
-    },
+    { "path": "/comunidades-terapeuticas", "title": "Comunidades terapêuticas" },
     { "path": "/timeline", "title": "Linha do tempo" },
     { "path": "/bairros", "title": "Ações por bairro" },
     { "path": "/comissao", "title": "Comissão" },
+    { "path": "/cism", "title": "Área reservada aos membros CISM" },
     { "path": "/documentos", "title": "Biblioteca pública" },
     { "path": "/publicacoes", "title": "Publicações" },
     { "path": "/guia-caps", "title": "Guia de acesso aos CAPS" },
