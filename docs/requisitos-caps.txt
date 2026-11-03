@@ -1,0 +1,262 @@
+MÓDULO ESPECIALIZADO: GUIA DE ACESSO AOS CAPS E MAPA DA RAPS DE ITAJAÍ
+
+1. Objetivo
+
+Criar uma seção pública dedicada a explicar, de maneira simples e completa, como funcionam os Centros de Atenção Psicossocial de Itajaí, quem pode acessar cada modalidade, como buscar atendimento, quais atividades são oferecidas e qual é a capacidade real de atendimento das unidades.
+
+O módulo deverá servir simultaneamente como:
+
+* Guia de orientação para cidadãos e familiares;
+* Diretório geográfico dos serviços;
+* Painel de transparência sobre acesso, capacidade e demanda;
+* Ferramenta de monitoramento da oferta pública de cuidado em saúde mental;
+* Base documental para identificar lacunas de informação e subsidiar solicitações da CISM no COMUSA.
+
+2. Modalidades de CAPS
+
+Criar páginas explicativas individuais para CAPS II, CAPS III, CAPS AD, CAPS AD III, CAPSi e CAPS I, deixando claro quais modalidades estão efetivamente cadastradas e em funcionamento em Itajaí.
+
+CAPSi — Centro de Atenção Psicossocial Infantojuvenil
+
+Explicar que é destinado ao cuidado de crianças e adolescentes com sofrimento psíquico intenso ou necessidades complexas de saúde mental, inclusive situações relacionadas ao uso de álcool e outras drogas.
+
+Apresentar:
+
+* Faixa etária atendida, conforme regras e organização local;
+* Situações em que procurar o serviço;
+* Como funciona o primeiro acolhimento;
+* Atendimentos individuais e em grupo;
+* Acompanhamento familiar;
+* Articulação com escolas, UBS, assistência social e demais serviços, respeitando sigilo e consentimento;
+* Elaboração do Projeto Terapêutico Singular;
+* Critérios de acompanhamento e encaminhamento;
+* Horário, endereço, contatos e acessibilidade;
+* Capacidade diária, demanda e espera, se os dados oficiais estiverem disponíveis.
+
+Explicar que o serviço não substitui automaticamente toda forma de atendimento psicológico infantil e que a necessidade de acompanhamento especializado deve ser avaliada pela equipe.
+
+CAPS II — Centro de Atenção Psicossocial Adulto
+
+Explicar que é voltado prioritariamente a pessoas com sofrimento psíquico intenso e persistente que necessitam de acompanhamento psicossocial especializado.
+
+Apresentar:
+
+* Perfil do público atendido;
+* Como procurar o serviço;
+* Acolhimento inicial;
+* Avaliação das necessidades;
+* Atendimentos individuais;
+* Grupos terapêuticos e oficinas;
+* Atendimento médico e acompanhamento medicamentoso, conforme oferta local;
+* Orientação e apoio aos familiares;
+* Visitas domiciliares e articulação territorial, quando disponíveis;
+* Projeto Terapêutico Singular;
+* Critérios de continuidade do acompanhamento;
+* Capacidade, demanda, espera e disponibilidade de profissionais, quando documentadas.
+
+Diferenciar atendimento pontual, acolhimento, acompanhamento continuado e vagas em atividades específicas.
+
+CAPS AD — Centro de Atenção Psicossocial Álcool e outras Drogas
+
+Explicar que acolhe pessoas que precisam de cuidado relacionado ao uso prejudicial de álcool e outras drogas, com abordagem de saúde, direitos humanos e redução de danos.
+
+Apresentar:
+
+* Quem pode procurar o serviço;
+* Acolhimento sem estigmatização;
+* Como funciona a avaliação inicial;
+* Acompanhamento individual e em grupo;
+* Atendimento multiprofissional, conforme composição real da equipe;
+* Estratégias de redução de danos;
+* Apoio familiar;
+* Articulação com UBS, assistência social, serviços de urgência e outros pontos da RAPS;
+* Projeto Terapêutico Singular;
+* Possibilidades de encaminhamento para outros serviços;
+* Capacidade diária, demanda, espera e oferta efetiva de atividades.
+
+Não condicionar a orientação pública à exigência genérica de abstinência. Informar os procedimentos locais somente após confirmação oficial.
+
+CAPS III e CAPS AD III
+
+Explicar que essas modalidades possuem funcionamento contínuo, incluindo noites, fins de semana e feriados, conforme sua configuração normativa, e podem oferecer acolhimento noturno nas condições previstas para cada serviço.
+
+Não apresentar essas modalidades como existentes em Itajaí sem confirmação cadastral e operacional. Se não houver unidade confirmada, explicar a diferença e identificar, após validação oficial, qual serviço da rede atende às necessidades fora do horário habitual.
+
+3. Como acessar o atendimento
+
+Criar uma seção visual intitulada “Preciso de ajuda. Por onde começo?”.
+
+Explicar, em linguagem cidadã, que os CAPS são serviços públicos do SUS e que o primeiro acolhimento pode ser procurado diretamente, sem exigir previamente encaminhamento médico, conforme as orientações gerais do Ministério da Saúde.
+
+Apresentar o fluxo:
+
+1. A pessoa identifica a necessidade de cuidado;
+2. Procura o CAPS adequado ou a UBS de referência;
+3. A equipe realiza acolhimento inicial e avalia as necessidades;
+4. São discutidas as possibilidades de cuidado e os encaminhamentos pertinentes;
+5. Quando indicado, é construído um Projeto Terapêutico Singular;
+6. O acompanhamento é organizado de acordo com as necessidades, os recursos disponíveis e o plano de cuidado.
+
+Esclarecer que a procura direta não garante automaticamente vaga em toda atividade ou modalidade de acompanhamento, mas deve permitir a avaliação e a orientação sobre o cuidado apropriado.
+
+Incluir informações sobre documentos normalmente úteis, como identificação e Cartão Nacional de Saúde, sem apresentar a falta de documentos como impedimento absoluto para buscar ajuda em uma situação urgente.
+
+Diferenciar:
+
+* Primeiro acolhimento;
+* Atendimento agendado;
+* Acompanhamento continuado;
+* Atendimento de crise;
+* Atendimento de urgência e emergência.
+
+Em situações de risco imediato, orientar a busca por serviço de urgência e emergência. Exibir o SAMU 192 e os endereços e contatos de unidades de urgência somente após validação das informações locais.
+
+4. Mapa interativo dos serviços
+
+Criar um mapa navegável de Itajaí com pontos individualizados para:
+
+* CAPSi;
+* CAPS II;
+* CAPS III, caso existente;
+* CAPS AD;
+* CAPS AD III, caso existente;
+* UBS com atendimento psicológico;
+* Unidades de Pronto Atendimento;
+* Serviços hospitalares e leitos de saúde mental;
+* Serviços de atendimento psiquiátrico;
+* Consultório na Rua;
+* Centro Integrado de Saúde e outros centros especializados pertinentes;
+* Unidades de Acolhimento e outros dispositivos da RAPS, quando existentes e confirmados.
+
+Cada marcador deverá abrir uma ficha com:
+
+* Nome oficial;
+* Modalidade do serviço;
+* Endereço;
+* Bairro;
+* Telefone e contato institucional;
+* Horário de funcionamento;
+* Público atendido;
+* Como acessar;
+* Serviços oferecidos;
+* Necessidade ou não de encaminhamento, conforme regra confirmada;
+* Quantidade de profissionais por categoria;
+* Capacidade de atendimento;
+* Data da última verificação;
+* Fonte oficial;
+* Link para documentos relacionados.
+
+Incluir filtros por modalidade, bairro, horário, atendimento infantil, atendimento relacionado ao uso de substâncias e tipo de serviço.
+
+Adicionar botão para abrir a rota em um aplicativo de mapas, usando o endereço confirmado da unidade.
+
+Não divulgar como disponível um serviço cuja existência, localização ou funcionamento não tenham sido verificados.
+
+5. Capacidade diária e vagas: painel obrigatório de transparência
+
+Criar um painel específico para cada unidade, com o título “Capacidade, demanda e acesso”.
+
+Não utilizar uma única métrica chamada “vagas diárias” para representar situações diferentes. Registrar e apresentar separadamente:
+
+Capacidade instalada
+
+* Número de salas e espaços de atendimento;
+* Quantidade de profissionais por categoria;
+* Carga horária profissional disponível;
+* Capacidade planejada por modalidade de atividade;
+* Capacidade de acolhimento, quando aplicável.
+
+Produção assistencial
+
+* Quantidade de acolhimentos iniciais por mês;
+* Quantidade de atendimentos individuais;
+* Quantidade de atendimentos em grupo;
+* Quantidade de atendimentos familiares;
+* Quantidade de visitas domiciliares;
+* Quantidade de usuários acompanhados;
+* Quantidade de usuários novos;
+* Quantidade de atendimentos por dia, quando apurada.
+
+Demanda e acesso
+
+* Pessoas aguardando primeiro acolhimento, se houver fila formal;
+* Pessoas aguardando consulta ou atividade específica;
+* Tempo mediano e, se disponível, percentil 90 do tempo de espera;
+* Demanda recebida;
+* Demanda atendida;
+* Faltas e cancelamentos, quando registrados;
+* Demanda encaminhada para outros serviços;
+* Motivos de não inserção no acompanhamento, em categorias agregadas e não identificáveis.
+
+Acompanhamento continuado
+
+* Número de usuários ativos;
+* Frequência média de acompanhamento, quando calculável;
+* Modalidades terapêuticas oferecidas;
+* Taxa de ocupação, somente quando houver denominador válido e capacidade definida;
+* Critérios de inclusão e continuidade.
+
+Todos os indicadores devem permitir filtro por mês, trimestre, ano e unidade.
+
+Explicar que o número de atendimentos não equivale necessariamente ao número de pessoas únicas atendidas. Uma mesma pessoa pode ter diversos atendimentos durante o período.
+
+Diferenciar vagas programadas, vagas efetivamente ofertadas, atendimentos realizados e pessoas em acompanhamento.
+
+Quando os dados não forem disponibilizados, exibir “Informação solicitada”, “Não disponibilizada” ou “Metodologia ainda não confirmada”. Nunca estimar uma quantidade de vagas a partir apenas do número de profissionais ou de salas.
+
+6. Registro de informações pendentes
+
+Criar um módulo interno para que a comissão solicite formalmente à Secretaria Municipal de Saúde os dados necessários para preencher o painel.
+
+Incluir solicitações sobre:
+
+* Capacidade planejada e realizada de cada CAPS;
+* Quantidade de profissionais e carga horária;
+* Demanda mensal;
+* Usuários ativos e novos;
+* Tempo de espera;
+* Critérios de acesso;
+* Horários efetivamente praticados;
+* Atividades e grupos disponíveis;
+* Existência de fila e critérios de priorização;
+* Fluxos de encaminhamento;
+* Atendimento de crises;
+* Articulação com UPAs e hospitais;
+* Existência de acolhimento noturno;
+* Indicadores de qualidade e continuidade do cuidado.
+
+Cada pedido deve ter protocolo, destinatário, data de envio, prazo aplicável, resposta, documentos, status e histórico de acompanhamento.
+
+As informações públicas devem ser apresentadas de forma agregada, protegendo a privacidade dos usuários.
+
+7. Fontes e atualização
+
+Priorizar:
+
+* Ministério da Saúde;
+* CNES;
+* Secretaria Municipal de Saúde de Itajaí;
+* Portal oficial do Município;
+* Relatórios de gestão e produção do SUS;
+* Documentos públicos obtidos pela comissão;
+* Respostas oficiais às solicitações.
+
+Exibir a fonte e a data de atualização de cada informação. Permitir correção documentada quando houver divergência entre cadastros públicos e a situação operacional confirmada.
+
+8. Resultado esperado
+
+A pessoa que acessar essa seção deve conseguir responder:
+
+* Qual CAPS atende à minha necessidade?
+* Quem pode procurar esse serviço?
+* Preciso de encaminhamento?
+* Onde fica a unidade?
+* Qual é o horário e como entrar em contato?
+* O que acontece no primeiro acolhimento?
+* Quais serviços são efetivamente oferecidos?
+* Qual é a capacidade documentada?
+* Há fila ou tempo de espera conhecido?
+* Quando os dados foram atualizados?
+* Quais informações ainda não foram divulgadas?
+
+O módulo deve ser integrado ao mapa da RAPS, à timeline institucional, ao sistema de solicitações e ao dashboard de fiscalização, para que as informações sobre acesso e capacidade também possam fundamentar o monitoramento público.
