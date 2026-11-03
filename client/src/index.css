@@ -1254,6 +1254,92 @@ main:focus {
   font-weight: 800;
   white-space: nowrap;
 }
+.pilha-promo {
+  margin-top: 28px;
+  padding: 24px;
+  border: 1px solid #d7e4d6;
+  border-left: 4px solid #177e76;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #f3f8ee 0%, #fff 76%);
+}
+.pilha-promo-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+.pilha-promo-mark {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #eaf1c8;
+  color: #286455;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+.pilha-promo .eyebrow {
+  display: block;
+  color: #72824f;
+  font-size: 10px;
+}
+.pilha-promo h2 {
+  margin-top: 4px;
+  color: #2b6740;
+  font-size: 21px;
+}
+.pilha-promo p {
+  max-width: 850px;
+  margin: 14px 0;
+  color: #5e7663;
+  font-size: 12px;
+  line-height: 1.75;
+}
+.pilha-promo-intro {
+  font-size: 14px !important;
+}
+.pilha-promo-offer a {
+  color: #177e76;
+  font-weight: 700;
+  text-decoration: underline;
+}
+.pilha-promo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 12px;
+}
+.pilha-promo-actions .button {
+  flex: 1 1 220px;
+  white-space: normal;
+  text-align: center;
+}
+.pilha-promo-preview {
+  border-top: 1px solid #e2eadf;
+  padding-top: 13px;
+  font-size: 11px !important;
+}
+.pilha-promo-privacy {
+  margin-top: -6px !important;
+  font-size: 11px !important;
+}
+.pilha-promo-disclaimer {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid #ede4c8;
+  border-radius: 6px;
+  background: #fbf8ed;
+  color: #78663d !important;
+  font-weight: 600;
+}
+.pilha-promo-disclaimer svg {
+  flex: 0 0 auto;
+  margin-top: 2px;
+  color: #947844;
+}
 .map-full {
   height: 480px;
   position: relative;

@@ -130,6 +130,79 @@ export default function CapsGuide() {
               ajuda em uma situação urgente.
             </p>
           </div>
+          <section
+            id="pilha-plus"
+            className="pilha-promo"
+            aria-labelledby="pilha-plus-title"
+          >
+            <div className="pilha-promo-header">
+              <span className="pilha-promo-mark" aria-hidden="true">
+                P+
+              </span>
+              <div>
+                <span className="eyebrow">
+                  AUTOCUIDADO DIGITAL · ACESSO ANTECIPADO
+                </span>
+                <h2 id="pilha-plus-title">Conheça o PilhA+</h2>
+              </div>
+            </div>
+            <p className="pilha-promo-intro">
+              Registre e acompanhe tendências de sinais vitais, sono, saúde
+              emocional e dor — informações de autocuidado que devem ser
+              interpretadas no seu contexto.
+            </p>
+            <p className="pilha-promo-offer">
+              A página oficial apresenta um plano Básico gratuito por 30 dias;
+              confira as condições vigentes ao iniciar e conheça a proposta no
+              <a
+                href="https://vaideplanob.com.br/pilha-plus"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {' '}site do PilhA+
+              </a>.
+            </p>
+            <p className="pilha-promo-privacy">
+              Antes de registrar informações sensíveis no app oficial, confira
+              os avisos de privacidade e as condições de uso apresentados pelo
+              próprio serviço.
+            </p>
+            <div className="pilha-promo-actions">
+              <a
+                className="button button-primary"
+                href="https://vaideplanob.com.br/pilha-plus-app/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Experimentar acesso antecipado gratuito
+                <ArrowUpRight size={15} aria-hidden="true" />
+              </a>
+              <a
+                className="button button-secondary"
+                href="https://andreheck.github.io/pilha-plus-pwa-preview/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Prévia PWA para iPhone
+                <ArrowUpRight size={15} aria-hidden="true" />
+              </a>
+            </div>
+            <p className="pilha-promo-preview">
+              <strong>Sobre a prévia PWA do GitHub:</strong> abra no Safari e
+              use o botão de início; se desejar, adicione o app à tela inicial.
+              Os registros ficam no navegador do aparelho, sem login social ou
+              integração com servidor. Em aparelho compartilhado, outras
+              pessoas com acesso ao navegador podem ver esses registros locais.
+            </p>
+            <p className="pilha-promo-disclaimer">
+              <ShieldCheck size={16} aria-hidden="true" />
+              <span>
+                Ferramenta informativa de autocuidado e apoio à decisão. Não é
+                dispositivo médico, não fornece diagnóstico e não substitui
+                acompanhamento profissional.
+              </span>
+            </p>
+          </section>
           <div style={{ marginTop: 30 }}>
             <SectionTitle
               title="Qual modalidade atende a cada necessidade?"

@@ -2,7 +2,7 @@
 
 **Projeto:** Observatório de Saúde Mental (Sul do Brasil)
 **Recorte de dados atualmente implementado:** Itajaí/SC
-**Atualizado em:** 26/10/2026
+**Atualizado em:** 03/11/2026
 **Diretório Webdev:** `/home/ubuntu/observa`
 **Resource Webdev:** `wdp_59b2e5557fe66ce127ea572f`
 **Idioma público:** Português do Brasil (PT-BR)
@@ -40,9 +40,9 @@ Arquivos de entrada e áreas principais:
 - `docs/`: fontes, análise normativa, guia de uso, requisitos, implementação e continuidade.
 - `app.config.ts`: literal `logoUrl` da identidade visual da plataforma. A marca do site/favicon é independente desse metadado.
 
-A configuração Webdev consultada em 26/10/2026 informou `git_repository.provider = manus` e `publishing.auto_publish = false`. Assim, push/checkpoint e publicação são ações distintas; não assumir publicação automática. O último checkpoint registrado conhecido é `291d099` (`feat: expand Itajai municipal data center`), cuja versão pública conhecida ainda usava Leaflet/OpenStreetMap. A nova implementação local inclui alterações não necessariamente contidas nesse checkpoint; confirme o SHA efetivamente aceito antes de declarar o portal atualizado. A publicação pública conhecida é `https://observa-x7fimfpb.manus.space`; só afirmar que contém uma versão nova após a confirmação positiva de publicação.
+A configuração Webdev consultada em 03/11/2026 confirma `git_repository.provider = manus` e `publishing.auto_publish = false`: checkpoint e publicação são ações distintas. A última publicação confirmada continua sendo a versão `0349994c708fa2d75a478e5433051c265f4fe8c6`, em `https://observa-x7fimfpb.manus.space`, validada em 27/10. As alterações locais desta retomada (incluindo o cartão PilhA+) ainda dependem de novo checkpoint e publicação antes de serem declaradas como disponíveis no domínio público.
 
-O conector GitHub da sessão foi encontrado **desativado** em 26/10/2026. A configuração exibiu que a proposta para habilitá-lo não foi aceita, e não existe espelho GitHub legado configurado. O projeto não foi transferido para GitHub; o repositório canônico permanece Manus. A cópia desejada pelo usuário é `andreheck/Oberservatorio-de-saude-mental-Sc`. Não obter nem pedir token/senha por chat, não trocar o repositório canônico, não usar credenciais fora do escopo, `gh auth login`, `origin` ou outro mecanismo para contornar a conexão desabilitada. Retomar a exportação apenas depois de a autorização apropriada estar ativa e após reler a skill GitHub e o contrato Webdev aplicáveis. O arquivo local do projeto continua sendo a fonte de trabalho enquanto isso.
+O conector GitHub da sessão foi confirmado **ativo** em 03/11/2026 e a CLI autorizada `gh` respondeu à leitura do repositório PilhA+. O repositório externo desejado para este portal é `andreheck/Oberservatorio-de-saude-mental-Sc`; a exportação do portal continua pendente neste ponto. Manus permanece o repositório canônico. Não pedir/expor tokens ou senhas por chat, não executar `gh auth login`, não trocar a canonicalidade e não fazer force-push. Para exportar, inspecionar o estado remoto atual, trabalhar numa cópia temporária, preservar o README e todo o histórico/conteúdo existente, mesclar normalmente e confirmar o SHA no `main` remoto. O arquivo local continua sendo a fonte de trabalho até a exportação ser verificada.
 
 ## 3. Identidade, escopo e direção visual
 
@@ -194,3 +194,18 @@ Validação do working tree em 26/10: `pnpm check` passou; `pnpm test` passou (7
 O checkpoint de site `0349994c708fa2d75a478e5433051c265f4fe8c6` foi publicado com sucesso; URL permanente confirmada: `https://observa-x7fimfpb.manus.space`. A verificação pública foi feita no navegador isolado. Na primeira abertura o espaço do mapa ainda estava sem tiles, mas uma segunda visualização após a conclusão do carregamento exibiu a interface Google Maps (Roadmap/Satellite e controlos), tiles cartográficos, atribuição Google e os marcadores cadastrados. O texto da própria página mantém o heatmap desativado e a ressalva de que pontos não atestam funcionamento ou cobertura. A página pública `/mapa-raps` carregou; essa observação confirma o carregamento dos recursos, não o horário, operação ou situação de cada unidade. O servidor de desenvolvimento foi reiniciado com o ambiente sincronizado e `/api/health` respondeu HTTP 200; nenhuma operação gravou na base compartilhada.
 
 O conector GitHub foi confirmado ativo pela sessão. `gh repo view` confirmou `andreheck/Oberservatorio-de-saude-mental-Sc` como público, com branch `main`; a cópia temporária da branch contém apenas um README inicial e o commit `6da38cb819319ce2dcc12a9be9927b5c5a76c615`. A história Manus atual (`0349994c708fa2d75a478e5433051c265f4fe8c6`) não tem ancestral comum com esse commit. Neste ponto, nenhuma alteração foi enviada ao GitHub. Próximo passo: resolver a união de histórias na cópia temporária, preservando o README inicial (em especial a cautela de que o portal não é órgão formal nem representante oficial do COMUSA), testar o diff e fazer push normal para `main`; confirmar o SHA remoto antes de marcar a exportação como concluída. Não force-push.
+
+
+## 12. PilhA+ na orientação “Preciso de ajuda” — 03/11/2026
+
+A chamada do PilhA+ fica no panorama de `/guia-caps`, em `client/src/pages/portal/CapsGuide.tsx`; não cria nova rota nem o apresenta como atendimento de urgência. O conteúdo resume a proposta fornecida pelo proprietário (sinais vitais, sono, saúde emocional e dor) para observação pessoal e autocuidado. O aviso visível declara que é ferramenta informativa de autocuidado e apoio à decisão, não é dispositivo médico, não fornece diagnóstico e não substitui acompanhamento profissional.
+
+Fontes revisadas:
+
+- Página oficial: <https://vaideplanob.com.br/pilha-plus>. Apresenta o PilhA+ como “Índice Subjetivo de Estado” e lista funcionalidades/casos de uso; sua modalidade Básica é descrita como gratuita por 30 dias. O cartão informa esse limite e direciona a pessoa para conferir as condições vigentes, sem prometer gratuidade por prazo indefinido.
+- Entrada oficial do app: <https://vaideplanob.com.br/pilha-plus-app/>. A tela pública apresenta leitura de energia, sono, humor e recuperação e oferece início/instalação.
+- Repositório público de prévia: <https://github.com/andreheck/pilha-plus-pwa-preview>; aplicação publicada em <https://andreheck.github.io/pilha-plus-pwa-preview/>. O README identifica uma build estática PWA de teste para iPhone e informa que os registros ficam no navegador e que login social e integrações com servidor não estão disponíveis nessa prévia. O cartão limita explicitamente essa observação à versão GitHub; não extrapolar o mesmo comportamento de armazenamento para o app oficial.
+
+No cartão, o link primário abre o app oficial; o secundário abre a prévia PWA. A instrução de teste é deliberadamente breve: abrir no Safari e iniciar pelo controle exibido; instalação à tela inicial é opcional. A nota alerta sobre acesso aos registros locais em aparelho compartilhado. Não alegar validação clínica, precisão de medida, resultado diagnóstico ou disponibilidade garantida de cada recurso sem documentação atual específica. Em situação de urgência, a orientação continua sendo a seção de urgência já existente, não o PilhA+.
+
+Validação local de 03/11/2026 após a integração: `pnpm install --frozen-lockfile` concluiu; `pnpm check` passou; `pnpm test` passou com 34 testes em 7 arquivos; `pnpm build` passou. Permaneceram apenas avisos já conhecidos sobre o script de configuração da plataforma e o chunk inicial maior que 500 kB. Nenhuma escrita foi feita na base compartilhada. Esse código aguarda checkpoint e confirmação de publicação; até lá, não afirmar que o cartão esteja online.
